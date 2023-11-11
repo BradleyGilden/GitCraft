@@ -42,6 +42,6 @@ class User:
         """calculates number of commits generated from a user"""
         response = requests.get(f"{self.root}search/commits",
                                 headers=self.headers,
-                                params={"q": f"committer:{self.username}"})
+                                params={"q": f"author:{self.username}"})
 
         return response.json()["total_count"]
