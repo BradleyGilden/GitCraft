@@ -18,4 +18,4 @@ if __name__ == '__main__':
 
     user = User(token, username)
 
-    print(user.num_commits)
+    print(user.pinned_repos)
