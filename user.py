@@ -32,6 +32,16 @@ class User:
         response = requests.get(f"{self.root}user", headers=self.headers)
         return response.json()
 
+    def user_info_update(self, **kwargs):
+        """updates user information using a patch request"""
+        import json
+
+        if kwargs:
+            response = requests.patch(f"{self.root}user", headers=self.headers,
+                                      data=json.dumps(kwargs))
+            return {"status": response.status_code, "content": response.json()}
+        return {"status": 404, "conetent": {"message": "default"}}
+
     @property
     def test_credentials(self) -> bool:
         """tests a users credentials"""

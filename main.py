@@ -18,4 +18,7 @@ if __name__ == '__main__':
 
     user = User(token, username)
 
-    print(user.pinned_repos)
+    kwargs = {
+        "bio": "A South African Full Stack Developer fueled by Curiosity"
+        }
+    print(user.user_info_update(**kwargs))
