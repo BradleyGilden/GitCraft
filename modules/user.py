@@ -27,12 +27,12 @@ class User:
         self.root = "https://api.github.com/"
 
     @property
-    def user_info(self) -> dict:
+    def info(self) -> dict:
         """collects basic information of a user"""
         response = requests.get(f"{self.root}user", headers=self.headers)
         return response.json()
 
-    def user_info_update(self, **kwargs):
+    def info_update(self, **kwargs):
         """updates user information using a patch request"""
         import json
 
@@ -40,17 +40,17 @@ class User:
             response = requests.patch(f"{self.root}user", headers=self.headers,
                                       data=json.dumps(kwargs))
             return {"status": response.status_code, "content": response.json()}
-        return {"status": 404, "conetent": {"message": "default"}}
+        return {"status": 400, "content": {"message": "default error"}}
 
     @property
     def test_credentials(self) -> bool:
         """tests a users credentials"""
-        response = self.user_info
+        response = self.info
         login = response.get("login")
         if login is not None and login == self.username:
-            return True
+            return {"status": "success"}
         else:
-            return False
+            return {"status": "failed"}
 
     @property
     def num_commits(self) -> int:
@@ -64,15 +64,14 @@ class User:
         except Exception:
             return {}
 
-    @property
-    def pinned_repos(self) -> int:
+    def pinned_repos(self, num: int) -> dict:
         """get list of pinned repositories and their repsective info"""
         import json
 
         graphql_query = """
         query {
           user(login: "%s") {
-            pinnedItems(first: 6, types: [REPOSITORY]) {
+            pinnedItems(first: %d, types: [REPOSITORY]) {
               nodes {
                 ... on Repository {
                   name
@@ -83,11 +82,11 @@ class User:
             }
           }
         }
-        """ % self.username
+        """ % (self.username, num)
 
         try:
-            response = requests.post(f"{self.root}graphql", 
-                                     headers=self.graphql_headers, 
+            response = requests.post(f"{self.root}graphql",
+                                     headers=self.graphql_headers,
                                      data=json.dumps({"query": graphql_query}))
 
             return response.json()['data']['user']['pinnedItems']['nodes']

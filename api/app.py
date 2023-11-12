@@ -6,15 +6,20 @@ This is the root endpoint for flask to serve files
 Author: Bradley Dillion Gilden
 Date: 12-11-2023
 """
-from flask import Flask, make_response, render_template  # noqa
+from flask import Flask, make_response, render_template
 from flask_cors import CORS
-
+from api.blueprints.api_blueprint import api_bp
 
 app = Flask(__name__, template_folder="../web/html")
+
+# Registering blueprints
+app.register_blueprint(api_bp, url_prefix='/api')
+
+# Enabling CORS
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def index():
     """returns the index page of the project"""
     return render_template("index.html")
