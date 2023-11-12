@@ -8,7 +8,7 @@ Date: 11-11-2023
 """
 
 
-from user import User
+from modules.user import User
 from sys import argv
 
 
@@ -18,7 +18,4 @@ if __name__ == '__main__':
 
     user = User(token, username)
 
-    kwargs = {
-        "bio": "A South African Full Stack Developer fueled by Curiosity"
-        }
-    print(user.user_info_update(**kwargs))
+    print(user.pinned_repos)
