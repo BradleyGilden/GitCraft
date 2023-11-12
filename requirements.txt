@@ -1,0 +1,4 @@
+requests=2.31.0
+Flask=2.1.0
+pymongo=4.5.0
+flask_cors=4.0.0
