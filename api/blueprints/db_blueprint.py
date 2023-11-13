@@ -8,7 +8,7 @@ Date: 12-11-2023
 """
 
 from flask import Blueprint, jsonify, request
-from modules.mongo_crud import doc_signup  # noqa
+from modules.mongo_crud import doc_signup, doc_login  # noqa
 from flask_pymongo import PyMongo
 
 # Create a Flask Blueprint
@@ -32,9 +32,18 @@ def db_signup():
         json_data = request.get_json()
 
         response = doc_signup(mongo.db.users, json_data)
-        if response not in {"invalid_credentials", "WriteError", "occupied"}:
-            return jsonify({"message": response}), 200
-        else:
-            return jsonify({"message": response}), 400
+        return jsonify({"message": response[0]}), response[1]
+    except Exception as e:
+        return jsonify({"message": e}), 400
+
+
+@db_bp.route('/login', strict_slashes=False, methods=["POST"])
+def db_login():
+    """logs a new user into the user database"""
+    try:
+        json_data = request.get_json()
+
+        response = doc_login(mongo.db.users, json_data)
+        return jsonify({"message": response[0]}), response[1]
     except Exception as e:
         return jsonify({"message": e}), 400
