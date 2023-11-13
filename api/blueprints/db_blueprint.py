@@ -8,7 +8,7 @@ Date: 12-11-2023
 """
 
 from flask import Blueprint, jsonify, request
-from modules.mongo_crud import insert_doc  # noqa
+from modules.mongo_crud import doc_signup  # noqa
 from flask_pymongo import PyMongo
 
 # Create a Flask Blueprint
@@ -31,7 +31,7 @@ def db_signup():
     try:
         json_data = request.get_json()
 
-        response = insert_doc(mongo.db.users, json_data)
+        response = doc_signup(mongo.db.users, json_data)
         if response not in {"invalid_credentials", "WriteError", "occupied"}:
             return jsonify({"message": response}), 200
         else:

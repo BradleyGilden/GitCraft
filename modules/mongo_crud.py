@@ -13,7 +13,7 @@ from bson import ObjectId  # noqa
 """################################ CREATE ###############################"""
 
 
-def insert_doc(collection, document: dict) -> str:
+def doc_signup(collection, document: dict) -> str:
     """inserts document inside collection"""
     try:
         user = User(document["token"], document["login"])
