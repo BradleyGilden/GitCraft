@@ -26,11 +26,13 @@ def db_status():
 
 @db_bp.route('/signup', strict_slashes=False, methods=["POST"])
 def db_signup():
-    """add's new user and their details to the database"""
+    """add's new user and their details to the database, authenticates users
+    data in the process"""
     try:
         json_data = request.get_json()
+
         response = insert_doc(mongo.db.users, json_data)
-        if response != "write error" and response != "occupied":
+        if response not in {"invalid_credentials", "WriteError", "occupied"}:
             return jsonify({"message": response}), 200
         else:
             return jsonify({"message": response}), 400

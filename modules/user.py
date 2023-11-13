@@ -43,14 +43,10 @@ class User:
         return {"status": 400, "content": {"message": "default error"}}
 
     @property
-    def test_credentials(self) -> bool:
+    def test_credentials(self) -> int:
         """tests a users credentials"""
-        response = self.info
-        login = response.get("login")
-        if login is not None and login == self.username:
-            return {"status": "success"}
-        else:
-            return {"status": "failed"}
+        response = requests.get(f"{self.root}user", headers=self.headers)
+        return response.status_code
 
     @property
     def num_commits(self) -> int:

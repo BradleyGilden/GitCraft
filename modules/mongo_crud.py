@@ -6,6 +6,7 @@ creates functions for crud operations
 Author: Bradley Dillion Gilden
 Date: 09-11-2023
 """
+from modules.user import User
 from pymongo.errors import BulkWriteError, WriteError  # noqa
 from bson import ObjectId  # noqa
 
@@ -15,14 +16,17 @@ from bson import ObjectId  # noqa
 def insert_doc(collection, document: dict) -> str:
     """inserts document inside collection"""
     try:
-        doc = collection.find_one({"username": "Bradley Gilden"})
+        user = User(document["token"], document["login"])
+        if user.test_credentials != 200:
+            return "invalid_credentials"
+        doc = collection.find_one({"username": document["username"]})
         if doc is None:
             doc_id = collection.insert_one(document).inserted_id
             return str(doc_id)
         else:
             return "occupied"
     except WriteError:
-        return "write error"
+        return "WriteError"
 
 
 # def insert_docs(collection, document_list: List[dict]):
