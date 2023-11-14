@@ -16,13 +16,13 @@ def doc_signup(collection, document: dict) -> list:
     try:
         user = User(document["token"], document["login"])
         if user.test_credentials != 200:
-            return ["invalid_credentials", 400]
+            return ["invalid credentials (token or github username)", 400]
         doc = collection.find_one({"username": document["username"]})
         if doc is None:
             doc_id = collection.insert_one(document).inserted_id
             return [str(doc_id), 200]
         else:
-            return ["occupied", 400]
+            return ["usernamee taken", 400]
     except WriteError:
         return ["WriteError", 400]
 

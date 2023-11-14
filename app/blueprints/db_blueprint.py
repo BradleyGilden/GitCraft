@@ -29,7 +29,12 @@ def db_signup():
     """add's new user and their details to the database, authenticates users
     data in the process"""
     try:
-        json_data = request.get_json()
+        json_data = {
+            "username": request.form.get("username"),
+            "password": request.form.get("password"),
+            "token": request.form.get("token"),
+            "login": request.form.get("login")
+        }
 
         response = doc_signup(mongo.db.users, json_data)
         return jsonify({"message": response[0]}), response[1]
