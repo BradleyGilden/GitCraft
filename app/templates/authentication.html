@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup & Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/authentication.css') }}">
+  <script defer src="{{ url_for('static', filename='js/authentication.js') }}"></script>
+</head>
+  <body>
+    <div class="wrapper">
+      <h1 class="pro-title">GitCraft</h1>
+      <div class="title-text">
+        <div class="title login">Login Form</div>
+        <div class="title signup">Signup Form</div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label for="login" class="slide login">Login</label>
+          <label for="signup" class="slide signup">Signup</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <form action="{{ url_for('db.db_login') }}" class="login">
+            <div class="field">
+              <input type="username" name="username" placeholder="Username" minlength="4" title="Username must atleast contain 4 characters" required>
+            </div>
+            <div class="field">
+              <input type="password" name="password" placeholder="Password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" title="Password must be atleast 8 characters with one uppercase letter, one lowercase letter, and one digit." required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+            <div class="loader">
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+            </div>
+          </form>
+          <form action="{{ url_for('db.db_signup') }}" class="signup">
+            <div class="field">
+              <input type="text" name="username" placeholder="Username" minlength="4" title="Username must atleast contain 4 characters" required>
+            </div>
+            <div class="field">
+              <input type="text" name="login" placeholder="GitHub Username" minlength="4" title="Username must atleast contain 4 characters" required>
+            </div>
+            <div class="field">
+              <input type="password" name="token" placeholder="GitHub Token" required>
+            </div>
+            <div class="field">
+              <input type="password" name="password" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" title="Password must be atleast 8 characters with one uppercase letter, one lowercase letter, and one digit." required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Signup">
+            </div>
+            <div class="loader">
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+              <div class="wave"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
