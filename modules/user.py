@@ -92,7 +92,7 @@ class User:
             return {}
 
     @property
-    def longest_streak(self):
+    def streak_stats(self):
         """gets longest commit streak"""
         import json
 
@@ -119,12 +119,14 @@ class User:
                                  data=json.dumps({'query': query}),
                                  headers=self.graphql_headers)
         if response.status_code == 200:
-            return User.calculate_longest_streak(response.json())
+            return User.calculate_streak_stats(response.json())
         else:
             return {}
 
     @staticmethod
-    def calculate_longest_streak(calendar_response):
+    def calculate_streak_stats(calendar_response):
+        """Uses the calendar response from longest_streak to calculate a users
+        streak stats"""
         user = calendar_response.get('data', {})
         collection = user.get('user', {})
         calendar = collection.get('contributionsCollection', {})
