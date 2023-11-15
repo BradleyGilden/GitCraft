@@ -10,8 +10,10 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from app.blueprints.api_blueprint import api_bp
 from app.blueprints.db_blueprint import db_bp, mongo
+from secrets import token_hex
 
 app = Flask(__name__)
+app.secret_key = token_hex(16)
 
 # establishing mongodb connection
 connection_str = ("mongodb+srv://bradleygilden:nanospartan117@cluster0."
@@ -35,8 +37,14 @@ def index():
 
 @app.route("/authentication", strict_slashes=False)
 def authentication():
-    """returns the index page of the project"""
+    """returns the login/signup of the project"""
     return render_template("authentication.html")
+
+
+@app.route("/authentication", strict_slashes=False)
+def dashboard():
+    """returns the index page of the project"""
+    return render_template("dashboard.html")
 
 
 @app.errorhandler(404)

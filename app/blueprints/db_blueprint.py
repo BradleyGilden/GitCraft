@@ -7,7 +7,7 @@ Author: Bradley Dillion Gilden
 Date: 12-11-2023
 """
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, session
 from modules.mongo_crud import doc_signup, doc_login  # noqa
 from flask_pymongo import PyMongo
 
@@ -52,6 +52,7 @@ def db_login():
         }
 
         response = doc_login(mongo.db.users, json_data)
-        return jsonify({"message": response[0]}), response[1]
+        if response[1] == 200:
+            return jsonify({"message": response[0]}), response[1]
     except Exception as e:
         return jsonify({"message": e}), 400
