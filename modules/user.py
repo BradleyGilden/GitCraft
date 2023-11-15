@@ -99,6 +99,11 @@ class User:
                   stargazerCount
                   forkCount
                   createdAt
+                  collaborators(first: 5) {
+                    nodes {
+                      login
+                    }
+                  }
                 }
               }
             }
@@ -187,6 +192,7 @@ class User:
             "email": general['email'],
             "hireable": general['hireable'],
             "bio": general['bio'],
+            "disk_usage": general['disk_usage'],
             "following": general['following'],
             "followers": general['followers'],
             "repo_count": (general['public_repos'] +
