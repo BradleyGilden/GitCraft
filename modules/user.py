@@ -34,12 +34,30 @@ class User:
         response = requests.get(f"{self.root}user", headers=self.headers)
         return response.json()
 
-    def info_update(self, **kwargs):
+    @property
+    def socials(self) -> dict:
+        """get's social acount information"""
+        response = requests.get(f"{self.root}user/social_accounts",
+                                headers=self.headers)
+        return response.json()
+
+    def info_update(self, kwargs: dict) -> dict:
         """updates user information using a patch request"""
         import json
 
         if kwargs:
             response = requests.patch(f"{self.root}user", headers=self.headers,
+                                      data=json.dumps(kwargs))
+            return {"status": response.status_code, "content": response.json()}
+        return {"status": 400, "content": {"message": "default error"}}
+
+    def socials_update(self, kwargs: dict) -> dict:
+        """updates user information using a patch request"""
+        import json
+
+        if kwargs:
+            response = requests.patch(f"{self.root}user/social_accounts",
+                                      headers=self.headers,
                                       data=json.dumps(kwargs))
             return {"status": response.status_code, "content": response.json()}
         return {"status": 400, "content": {"message": "default error"}}
@@ -75,6 +93,12 @@ class User:
                   name
                   description
                   url
+                  primaryLanguage {
+                    name
+                  }
+                  stargazerCount
+                  forkCount
+                  createdAt
                 }
               }
             }
@@ -145,12 +169,32 @@ class User:
                 if current_streak > longest_streak:
                     longest_streak = current_streak
 
-        return {'longest': longest_streak, 'current': current_streak}
+        return {'longest': longest_streak,
+                'current': current_streak,
+                'total': total.get('totalContributions', 0)}
 
-    # def get_all_info(self):
-    #     """this returns all infor associated with a user needed for a user
-    #     session"""
+    def get_all_info(self):
+        """this returns all infor associated with a user needed for a user
+        session"""
+        general = self.info
+        user_document = {
+            "login": general['login'],
+            "avatar": general['avatar_url'],
+            "name": general['name'],
+            "company": general['company'],
+            "blog": general['blog'],
+            "location": general['location'],
+            "email": general['email'],
+            "hireable": general['hireable'],
+            "bio": general['bio'],
+            "following": general['following'],
+            "followers": general['followers'],
+            "repo_count": (general['public_repos'] +
+                           general['owned_private_repos']),
+            "created_at": general['created_at'],
+            "socials": self.socials,
+            "streak": self.streak_stats,
+            "pinned": self.pinned_repos(6)
+        }
 
-    #     user_document = {
-    #         "general": self.info
-    #     }
+        return user_document

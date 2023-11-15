@@ -62,5 +62,5 @@ def patch_user_info():
     if headers.get("Token") is None or headers.get("Username") is None:
         return jsonify({"message": "Token or Username Header missing"}), 400
     user = User(request.headers.get("Token"), request.headers.get("Username"))
-    response = user.info_update(**data)
+    response = user.info_update(data)
     return jsonify(response["content"]), response["status"]
