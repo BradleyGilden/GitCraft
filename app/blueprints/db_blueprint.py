@@ -61,6 +61,7 @@ def db_login():
             # load the info into the session
             for key, value in all_info.items():
                 session[key] = value
+            session["token"] = response[0]["token"]
             return redirect(url_for("dashboard"))
         else:
             return jsonify({"message": response[0]}), response[1]
