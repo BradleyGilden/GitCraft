@@ -19,7 +19,7 @@ signupLink.onclick = (()=>{
 
 loginForm.addEventListener('submit', async function(event){
   event.preventDefault();
-  const loadingAnimation = document.querySelector('.loader');
+  const loadingAnimation = document.querySelector('.login .loader');
   loadingAnimation.style.display = 'flex';
   const formData = new FormData(loginForm);
   console.log(formData.get('username'));
@@ -35,7 +35,7 @@ loginForm.addEventListener('submit', async function(event){
 
 signupForm.addEventListener('submit', async function(event){
   event.preventDefault();
-  const loadingAnimation = document.querySelector('.loader');
+  const loadingAnimation = document.querySelector('.signup .loader');
   loadingAnimation.style.display = 'flex';
   const formData = new FormData(signupForm);
   console.log(formData.get('username'));
