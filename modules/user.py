@@ -122,7 +122,7 @@ class User:
 
     @property
     def streak_stats(self):
-        """gets longest commit streak"""
+        """gets the longest commit streak"""
         import json
 
         # Your GraphQL query for contributions
