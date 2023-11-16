@@ -25,10 +25,11 @@ loginForm.addEventListener('submit', async function(event){
   console.log(formData.get('username'));
   const response = await fetch(loginForm.action, {method: 'POST', body: formData});
   loadingAnimation.style.display = 'none';
-  if (response.ok) {
-    alert('login successful');
+  console.log(response)
+  if (response.status < 400) {
+    window.location.href = response.url;
   } else {
-    alert('Invalid credentials');
+    alert("Invalid credentials");
   }
 });
 

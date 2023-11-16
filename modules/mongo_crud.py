@@ -33,4 +33,4 @@ def doc_login(collection, document: dict) -> list:
     if doc is None or doc["password"] != document["password"]:
         return ["invalid_credentials", 400]
     else:
-        return ["valid_credentials", 200]
+        return [doc, 200]

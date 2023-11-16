@@ -6,7 +6,7 @@ This is the root endpoint for flask to serve files
 Author: Bradley Dillion Gilden
 Date: 12-11-2023
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 from flask_cors import CORS
 from app.blueprints.api_blueprint import api_bp
 from app.blueprints.db_blueprint import db_bp, mongo
@@ -41,10 +41,10 @@ def authentication():
     return render_template("authentication.html")
 
 
-@app.route("/authentication", strict_slashes=False)
+@app.route("/dashboard", strict_slashes=False)
 def dashboard():
     """returns the index page of the project"""
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", name=session["name"])
 
 
 @app.errorhandler(404)

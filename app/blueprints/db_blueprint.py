@@ -7,7 +7,8 @@ Author: Bradley Dillion Gilden
 Date: 12-11-2023
 """
 
-from flask import Blueprint, jsonify, request, session
+from flask import Blueprint, jsonify, request, session, url_for, redirect
+from modules.user import User
 from modules.mongo_crud import doc_signup, doc_login  # noqa
 from flask_pymongo import PyMongo
 
@@ -42,7 +43,7 @@ def db_signup():
         return jsonify({"message": e}), 400
 
 
-@db_bp.route('/login', strict_slashes=False, methods=["POST"])
+@db_bp.route('/login', strict_slashes=False, methods=["GET", "POST"])
 def db_login():
     """logs a new user into the user database"""
     try:
@@ -53,6 +54,15 @@ def db_login():
 
         response = doc_login(mongo.db.users, json_data)
         if response[1] == 200:
+
+            # get user info from login information
+            user = User(response[0]["token"], response[0]["login"])
+            all_info = user.get_all_info()
+            # load the info into the session
+            for key, value in all_info.items():
+                session[key] = value
+            return redirect(url_for("dashboard"))
+        else:
             return jsonify({"message": response[0]}), response[1]
     except Exception as e:
         return jsonify({"message": e}), 400
