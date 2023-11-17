@@ -6,7 +6,7 @@ creates functions for crud operations
 Author: Bradley Dillion Gilden
 Date: 09-11-2023
 """
-from modules.user import User
+from app.modules.user import User
 from pymongo.errors import BulkWriteError, WriteError  # noqa
 from bson import ObjectId  # noqa
 

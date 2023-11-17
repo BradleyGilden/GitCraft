@@ -8,8 +8,8 @@ Date: 12-11-2023
 """
 
 from flask import Blueprint, jsonify, request, session, url_for, redirect
-from modules.user import User
-from modules.mongo_crud import doc_signup, doc_login  # noqa
+from app.modules.user import User
+from app.modules.mongo_crud import doc_signup, doc_login  # noqa
 from flask_pymongo import PyMongo
 
 # Create a Flask Blueprint

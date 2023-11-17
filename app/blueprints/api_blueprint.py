@@ -8,7 +8,7 @@ Date: 12-11-2023
 """
 
 
-from modules.user import User
+from app.modules.user import User
 from flask import Blueprint, jsonify, request
 
 api_bp = Blueprint('api', __name__)

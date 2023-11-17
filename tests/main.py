@@ -8,7 +8,7 @@ Date: 11-11-2023
 """
 
 
-from modules.user import User
+from app.modules.user import User
 from sys import argv
 
 
