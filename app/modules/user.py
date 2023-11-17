@@ -8,6 +8,7 @@ Date: 11-11-2023
 """
 
 import requests
+import json
 
 
 class User:
@@ -43,7 +44,6 @@ class User:
 
     def info_update(self, kwargs: dict) -> dict:
         """updates user information using a patch request"""
-        import json
 
         if kwargs:
             response = requests.patch(f"{self.root}user", headers=self.headers,
@@ -53,7 +53,6 @@ class User:
 
     def socials_update(self, kwargs: dict) -> dict:
         """updates user information using a patch request"""
-        import json
 
         if kwargs:
             response = requests.patch(f"{self.root}user/social_accounts",
@@ -82,7 +81,6 @@ class User:
 
     def pinned_repos(self, num: int) -> dict:
         """get list of pinned repositories and their repsective info"""
-        import json
 
         graphql_query = """
         query {
@@ -123,7 +121,6 @@ class User:
     @property
     def streak_stats(self):
         """gets the longest commit streak"""
-        import json
 
         # Your GraphQL query for contributions
         query = """
@@ -178,6 +175,20 @@ class User:
                 'current': current_streak,
                 'total': total.get('totalContributions', 0)}
 
+    @property
+    def space_occupied(self):
+        """total space occupied by a repository"""
+        try:
+            response = requests.get(f"{self.root}user/repos",
+                                    headers=self.headers)
+            repos = response.json()
+            total = 0
+            for repo in repos:
+                total += repo["size"]
+            return total
+        except Exception:
+            return 0
+
     def get_all_info(self):
         """this returns all infor associated with a user needed for a user
         session"""
@@ -192,15 +203,44 @@ class User:
             "email": general['email'],
             "hireable": general['hireable'],
             "bio": general['bio'],
-            "disk_usage": general['disk_usage'],
+            "space_available": general["plan"]["space"],
+            "plan": general["plan"]["name"],
             "following": general['following'],
             "followers": general['followers'],
             "repo_count": (general['public_repos'] +
                            general['owned_private_repos']),
             "created_at": general['created_at'],
+            "repo_space": self.space_occupied,
             "socials": self.socials,
             "streak": self.streak_stats,
             "pinned": self.pinned_repos(6)
         }
 
         return user_document
+
+# ************************ EXPERIMENTAL CODE ****************************
+
+    # @property
+    # def languages(self):
+    #     """gets repository language stats"""
+    #     graphql_query = """
+    #     query {
+    #       user(login: "%s") {
+    #         repositories(first: 100) {
+    #           nodes {
+    #             name
+    #             languages(first: 5) {
+    #               nodes {
+    #                 name
+    #                 color
+    #               }
+    #             }
+    #           }
+    #         }
+    #       }
+    #     }
+    #     """ % (self.username)
+    #     response = requests.post(f"{self.root}graphql",
+    #                              headers=self.graphql_headers,
+    #                              data=json.dumps({"query": graphql_query}))
+    #     print(response.json())

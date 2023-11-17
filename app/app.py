@@ -44,7 +44,7 @@ def authentication():
 @app.route("/dashboard", strict_slashes=False)
 def dashboard():
     """returns the index page of the project"""
-    return render_template("dashboard.html", name=session["name"])
+    return render_template("dashboard.html", **session)
 
 
 @app.errorhandler(404)

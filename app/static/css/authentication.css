@@ -21,7 +21,7 @@ html,body{
 }
 .pro-title {
   margin-bottom: 10px;
-  color: rgb(198, 0, 198);
+  color: rgb(145, 0, 198);
 }
 .wrapper{
   overflow: hidden;
@@ -230,6 +230,18 @@ form .btn input[type="submit"]{
 }
 .wave:nth-child(10) {
   animation-delay: 0.9s;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  height: 100px;
+  width: 100px;
+  background-image: url(../images/gitlogowhite.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes wave {
