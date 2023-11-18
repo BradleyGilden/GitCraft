@@ -22,7 +22,7 @@ def doc_signup(collection, document: dict) -> list:
             doc_id = collection.insert_one(document).inserted_id
             return [str(doc_id), 200]
         else:
-            return ["usernamee taken", 400]
+            return ["username taken", 400]
     except WriteError:
         return ["WriteError", 400]
 

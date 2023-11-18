@@ -67,3 +67,17 @@ def db_login():
             return jsonify({"message": response[0]}), response[1]
     except Exception as e:
         return jsonify({"message": e}), 400
+
+
+@db_bp.route('/logout', strict_slashes=False, methods=["POST"])
+def db_logout():
+    """handles logout of a user"""
+    session_data = {
+        "login", "avatar", "name", "company", "blog", "location", "email",
+        "hireable", "bio", "space_available", "plan", "following", "followers",
+        "repo_count", "created_at", "repo_space", "socials", "streak", "pinned"
+    }
+    # releases data from session
+    for data in session_data:
+        session.pop(data, None)
+    return redirect(url_for('authentication')), 302

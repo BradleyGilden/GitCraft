@@ -29,7 +29,11 @@ loginForm.addEventListener('submit', async function(event){
   if (response.status < 400) {
     window.location.href = response.url;
   } else {
-    alert("Invalid credentials");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Invalid Credentials (Password does not match Username)! Try Again"
+    });
   }
 });
 
@@ -42,8 +46,17 @@ signupForm.addEventListener('submit', async function(event){
   const response = await fetch(signupForm.action, {method: 'POST', body: formData});
   loadingAnimation.style.display = 'none';
   if (response.ok) {
-    alert('signup successful');
+    Swal.fire({
+      title: "Success!",
+      text: "You can now Login",
+      icon: "success"
+    });
   } else {
-    alert('Invalid credentials (Username Taken | Wrong Token | Wrong Github Login)');
+    const jsonResponse = await response.json()
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: jsonResponse.message + "! Try Again"
+    });
   }
 });

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Monstserrat:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap');
 
 @import "./bootstrap/scss/bootstrap";
 * {
@@ -23,5 +23,17 @@ body {
   font-weight: 700;
   font-size: 1.7rem;
 }
-
+/**************** CUSTOM FONTS ************************/
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+/**************** Profile ************************/
 @import "./dashboard";
+
+/*************** CUSTOM SWEET ALERT ***************/
+
+.navbar-nav.nav-pills {
+  .nav-link.active {
+    background-color: #09af00;
+  }
+}
