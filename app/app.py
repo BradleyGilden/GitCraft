@@ -38,13 +38,19 @@ def index():
 @app.route("/authentication", strict_slashes=False)
 def authentication():
     """returns the login/signup of the project"""
-    return render_template("authentication.html")
+    if 'login' in session:
+        return render_template("dashboard.html", **session)
+    else:
+        return render_template("authentication.html")
 
 
 @app.route("/dashboard", strict_slashes=False)
 def dashboard():
     """returns the index page of the project"""
-    return render_template("dashboard.html", **session)
+    if 'login' in session:
+        return render_template("dashboard.html", **session)
+    else:
+        return render_template("authentication.html")
 
 
 @app.errorhandler(404)

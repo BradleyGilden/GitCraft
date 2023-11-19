@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chartjs CDN link -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <!-- sweet alert cdn links -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -12,10 +14,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
   <!-- scripts -->
   <script defer src="{{ url_for('static', filename='js/general.js') }}"></script>
-  <title>Document</title>
+  <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  <title>{{name}}'s Dashboard</title>
 </head>
   <body>
-    <nav class="navbar custom-nav-bg navbar-expand-lg border-light border-bottom " data-bs-theme="dark">
+    <nav class="navbar custom-nav-bg navbar-expand-lg border-light border-bottom" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('dashboard') }}">
           <img src="../static/images/gitlogonav.svg" alt="Bootstrap" width="45" height="45">
@@ -68,6 +71,70 @@
         </div>
 
         <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
+      </div>
+    </div>
+    <div class="board d-flex align-items-center container mt-5 gap-4">
+      <div class="board__chart1 rounded-5 p-3" data-repospace="{{ repo_space }}" data-availablespace="{{ space_available }}">
+        <canvas class="board__chart1-pie"></canvas>
+      </div>
+      <div class=" container d-flex flex-column w-100 row-gap-4">
+        <div class="card text-center rates rounded-5">
+          <div class="card-body">
+            <h5 class="card-title">Rate Limits</h5>
+            <p class="card-text mb-2 bg-primary-subtle rounded-4">Keep Track of API rate limits to avoid making too many calls</p>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <h4 class="mt-2">Rest API</h4>
+                  <div class="row justify-content-center text-start bg-primary-subtle">
+                    <div class="col-4">limit</div>
+                    <div class="col-3">{{ rates.rest.limit }}</div>
+                    <div class="col-3 ps-1 border-2 border-start border-dark-subtle">calls</div>
+                  </div>
+                  <div class="row justify-content-center text-start">
+                    <div class="col-4">used</div>
+                    <div class="col-3">{{ rates.rest.used }}</div>
+                    <div class="col-3 ps-1 border-2 border-start border-dark-subtle">calls</div>
+                  </div>
+                  <div class="row justify-content-center text-start bg-primary-subtle">
+                    <div class="col-4">remaining</div>
+                    <div class="col-3">{{ rates.rest.remaining }}</div>
+                    <div class="col-3 ps-1 border-2 border-start border-dark-subtle">calls</div>
+                  </div>
+                </div>
+                <div class="col">
+                  <h4 class="mt-2">GraphQL API</h4>
+                  <div class="row justify-content-center text-start bg-primary-subtle">
+                    <div class="col-4">limit</div>
+                    <div class="col-3">{{ rates.graphql.limit }}</div>
+                    <div class="col-3 ps-1 border-2 border-start border-dark-subtle">calls</div>
+                  </div>
+                  <div class="row justify-content-center text-start">
+                    <div class="col-4">used</div>
+                    <div class="col-3">{{ rates.graphql.used }}</div>
+                    <div class="col-3 ps-1 border-2 border-start border-dark-subtle">calls</div>
+                  </div>
+                  <div class="row justify-content-center text-start bg-primary-subtle">
+                    <div class="col-4">remaining</div>
+                    <div class="col-3">{{ rates.graphql.remaining }}</div>
+                    <div class="col-3 ps-1 border-2 border-start border-dark-subtle">calls</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-body-secondary d-flex justify-content-around">
+            <span class="text-primary">rest reset: {{ rates.rest.reset.strftime('%H:%M') }}</span>
+            <span class="text-primary">graphql reset: {{ rates.graphql.reset.strftime('%H:%M') }}</span>
+          </div>
+        </div>
+        <div class="card rounded-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">GitHub Stats</h5>
+            <p class="card-text text-center">Monitor Your GitHub Stats</p>
+
+          </div>
+        </div>
       </div>
     </div>
   </body>

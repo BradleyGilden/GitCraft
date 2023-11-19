@@ -1,1 +1,16 @@
+.board {
+  &__chart1{
+    width: 350px;
+    background-color: white;
+  }
+}
 
+.rates {
+  background-color: white;
+  h4 {
+    font-size: 1.1rem;
+  }
+  .col-3, .col-4{
+    font-size: 0.8rem;
+  }
+}
