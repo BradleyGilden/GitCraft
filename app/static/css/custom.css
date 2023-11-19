@@ -12010,7 +12010,7 @@ body {
 
 /**************** Profile ************************/
 .board__chart1 {
-  width: 350px;
+  width: 370px;
   background-color: white;
 }
 
@@ -12022,6 +12022,10 @@ body {
 }
 .rates .col-3, .rates .col-4 {
   font-size: 0.8rem;
+}
+
+#longest-streak {
+  color: rgb(149, 38, 246);
 }
 
 /*************** CUSTOM SWEET ALERT ***************/

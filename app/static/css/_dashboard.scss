@@ -1,6 +1,6 @@
 .board {
   &__chart1{
-    width: 350px;
+    width: 370px;
     background-color: white;
   }
 }
@@ -13,4 +13,8 @@
   .col-3, .col-4{
     font-size: 0.8rem;
   }
+}
+
+#longest-streak {
+  color: rgb(149, 38, 246);
 }
