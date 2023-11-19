@@ -9,6 +9,7 @@ Date: 11-11-2023
 
 import requests
 import json
+from datetime import datetime
 
 
 class User:
@@ -189,6 +190,26 @@ class User:
         except Exception:
             return 0
 
+    @property
+    def rate_limits(self):
+        """get's github rate limits of a user"""
+        try:
+            response = requests.get(f"{self.root}rate_limit",
+                                    headers=self.headers)
+            jsonData = response.json()
+            rest_reset = jsonData["resources"]["core"]["reset"]
+            graphql_reset = jsonData["resources"]["graphql"]["reset"]
+            jsonData["resources"]["core"]["reset"] = datetime.fromtimestamp(
+                rest_reset
+            )
+            jsonData["resources"]["graphql"]["reset"] = datetime.fromtimestamp(
+                graphql_reset
+            )
+            return {"rest": jsonData["resources"]["core"],
+                    "graphql": jsonData["resources"]["graphql"]}
+        except Exception:
+            return {}
+
     def get_all_info(self):
         """this returns all infor associated with a user needed for a user
         session"""
@@ -213,7 +234,8 @@ class User:
             "repo_space": self.space_occupied,
             "socials": self.socials,
             "streak": self.streak_stats,
-            "pinned": self.pinned_repos(6)
+            "pinned": self.pinned_repos(6),
+            "rates": self.rate_limits
         }
 
         return user_document
