@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- sweet alert cdn links -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!-- Bootstrap Dependencies -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <!-- scripts -->
+  <script defer src="{{ url_for('static', filename='js/general.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/settings.js') }}"></script>
+  <title>Settings</title>
+</head>
+  <body>
+    <nav class="navbar custom-nav-bg navbar-expand-lg border-light border-bottom" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('dashboard') }}">
+          <img src="{{ url_for('static', filename='images/gitlogonav.svg') }}" alt="Bootstrap" width="45" height="45">
+          GitCraft
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active custom-nav-toggle" aria-current="page" href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custom-nav-toggle" href="{{ url_for('temps') }}">Templates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custom-nav-toggle" href="{{ url_for('settings') }}">Settings</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                Profile
+              </a>
+              <!-- <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Refresh</a></li>
+              </ul> -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h3 class="offcanvas-title text-primary" id="offcanvasRightLabel">{{ name }}</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column align-items-center overflow-x-hidden">
+        <img class="rounded-circle w-75" src="{{ avatar }}" id="offcanvas-avatar"/>
+        <div class="container-fluid d-flex justify-content-start mt-5 mb-1 ms-5">
+          <span class="d-inline-block border-2 border-end border-primary w-25">Login</span>
+          <span class="d-inline-block ps-2">{{ login }}</span>
+        </div> 
+        <div class="container-fluid d-flex justify-content-start mb-1 ms-5">
+          <span class="d-inline-block border-2 border-end border-primary w-25 ">Plan</span>
+          <span class="d-inline-block ps-2">{{ plan }}</span>
+        </div>
+        <div class="container-fluid d-flex justify-content-start mb-5 ms-5">
+          <span class="d-inline-block border-2 border-end border-primary w-25">Token</span>
+          <span class="d-inline-block ps-2" id="token-display" data-tokenshow="{{ token }}">***********</span>
+        </div>
+
+        <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
+      </div>
+    </div>
+    <h4 class="text-center tw mt-3">Update GitHub Details</h4>
+    <form action="{{ url_for('api.patch_user_info') }}" id="gitUserDetails" method="patch" class="w-50 container p-4">
+      <div class="form-floating mb-3">
+        <input type="text" name="name" class="form-control" id="floatingName" placeholder="name@example.com">
+        <label class="text-primary" for="floatingName">GitHub Display Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+        <label class="text-primary" for="floatingEmail">Email address (check github email permissions)</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea name="bio" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
+        <label id="charCount" class="text-primary" for="floatingTextarea">Bio</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" name="location" class="form-control" id="floatingLocation" placeholder="name@example.com">
+        <label class="text-primary" for="floatingName">Location</label>
+      </div>
+      <div class="input-group mb-3">
+        <div class="form-check form-switch me-5">
+          <input class="form-check-input bg-warning" type="checkbox" name="hireable" role="switch" id="hireable" checked>
+          <label class="form-check-label text-white" for="hireable">hireable</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" name="company" class="form-control" id="floatingCompany" placeholder="name@example.com">
+          <label class="text-primary" for="floatingCompany">Company</label>
+        </div>
+      </div>
+      <div class="text-end">
+        <button class="btn btn-success text-white w-25" type="submit">Update</button>
+        <button class="btn btn-secondary text-white w-25" id="git-clear" type="button">Clear</button>
+      </div>
+    </form>
+  </body>
+</html>

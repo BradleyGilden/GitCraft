@@ -46,9 +46,27 @@ def authentication():
 
 @app.route("/dashboard", strict_slashes=False)
 def dashboard():
-    """returns the index page of the project"""
+    """returns the dashboard page of the project"""
     if 'login' in session:
         return render_template("dashboard.html", **session)
+    else:
+        return render_template("authentication.html")
+
+
+@app.route("/temps", strict_slashes=False)
+def temps():
+    """returns the templates page of the project"""
+    if 'login' in session:
+        return render_template("temps.html", **session)
+    else:
+        return render_template("authentication.html")
+
+
+@app.route("/settings", strict_slashes=False)
+def settings():
+    """returns the settings page of the project"""
+    if 'login' in session:
+        return render_template("settings.html", **session)
     else:
         return render_template("authentication.html")
 

@@ -1,5 +1,23 @@
 const logoutButton = document.querySelector('#logout-btn');
 const tokenDisplay = document.querySelector('#token-display');
+
+document.addEventListener('DOMContentLoaded', () => {
+  let def = true;
+  let links = document.querySelectorAll('.custom-nav-toggle');
+  for (let link of links) {
+    if (link.href === window.location.href) {
+      link.classList.add('active');
+      def = false
+    } else {
+      link.classList.remove('active');
+    }
+  }
+  // default option if no page is visited
+  if (def) {
+    links[0].classList.add('active');
+  }
+})
+
 logoutButton.onclick = (()=>{
   Swal.fire({
     backdrop: false,

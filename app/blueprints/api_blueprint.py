@@ -9,7 +9,7 @@ Date: 12-11-2023
 
 
 from app.modules.user import User
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, session
 
 api_bp = Blueprint('api', __name__)
 
@@ -57,10 +57,13 @@ def patch_user_info():
     """This function will <num> number of pinned repositories and their
     corresponding info
     """
-    headers = dict(request.headers)
-    data = request.get_json()
-    if headers.get("Token") is None or headers.get("Username") is None:
-        return jsonify({"message": "Token or Username Header missing"}), 400
-    user = User(request.headers.get("Token"), request.headers.get("Username"))
+    form_data = request.form
+    data = {key: value for key, value in form_data.items() if form_data[key]}
+    if data.get("hireable", None) is not None:
+        if data["hireable"] == 'on':
+            data["hireable"] = True
+        else:
+            data["hireable"] = False
+    user = User(session["token"], session["login"])
     response = user.info_update(data)
-    return jsonify(response["content"]), response["status"]
+    return jsonify({"message": response["message"]}), response["status"]

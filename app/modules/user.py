@@ -49,8 +49,13 @@ class User:
         if kwargs:
             response = requests.patch(f"{self.root}user", headers=self.headers,
                                       data=json.dumps(kwargs))
-            return {"status": response.status_code, "content": response.json()}
-        return {"status": 400, "content": {"message": "default error"}}
+            if response.status_code < 400:
+                return {"status": response.status_code,
+                        "message": "successful"}
+            else:
+                return {"status": response.status_code,
+                        "message": "GitHub API call failed"}
+        return {"status": 400, "message": "Server Error"}
 
     def socials_update(self, kwargs: dict) -> dict:
         """updates user information using a patch request"""

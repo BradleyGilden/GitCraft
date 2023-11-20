@@ -62,6 +62,7 @@ def db_login():
             for key, value in all_info.items():
                 session[key] = value
             session["token"] = response[0]["token"]
+            session["gitcraft_user"] = json_data["username"]
             return redirect(url_for("dashboard"))
         else:
             return jsonify({"message": response[0]}), response[1]
