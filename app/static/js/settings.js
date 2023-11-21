@@ -4,16 +4,29 @@ const hireableCheck = document.getElementById('hireable');
 const detailsForm = document.getElementById('gitUserDetails')
 const clearBtn = document.getElementById('git-clear');
 const toolCard = document.getElementById('tool-card');
+const langCard = document.getElementById('lang-card');
 
 
 
 const toolsList = ["docker", "VsCode", "Flask", "ExpressJs", "NodeJs", "React", "Vue"]
+const langsList = ["JavaScript", "Python", "C", "C++", "C#", "Ruby", "Go", "Rust", "SQL", "Scala"]
 for (let tool of toolsList) {
   toolCard.innerHTML += `
   <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="${tool}Id">
     <label class="form-check-label" for="${tool}Id">
       ${tool}
+    </label>
+  </div>
+  `;
+}
+
+for (let lang of langsList) {
+  langCard.innerHTML += `
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="${lang}Id">
+    <label class="form-check-label" for="${lang}Id">
+      ${lang}
     </label>
   </div>
   `;
