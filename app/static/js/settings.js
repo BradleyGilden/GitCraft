@@ -3,6 +3,21 @@ const charCountElement = document.getElementById('charCount');
 const hireableCheck = document.getElementById('hireable');
 const detailsForm = document.getElementById('gitUserDetails')
 const clearBtn = document.getElementById('git-clear');
+const toolCard = document.getElementById('tool-card');
+
+
+
+const toolsList = ["docker", "VsCode", "Flask", "ExpressJs", "NodeJs", "React", "Vue"]
+for (let tool of toolsList) {
+  toolCard.innerHTML += `
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="${tool}Id">
+    <label class="form-check-label" for="${tool}Id">
+      ${tool}
+    </label>
+  </div>
+  `;
+}
 
 // Add event listener for the 'input' event
 textarea.addEventListener('input', function() {

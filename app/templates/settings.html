@@ -106,8 +106,21 @@
         </div>
       </form>
       <h4 class="text-center text-white mt-3">Customizations</h4>
-      <div class="container" style="min-height: 400px;">
-
+      <div class="container d-flex flex-column align-items-center" style="min-height: 400px;">
+        <button class="btn btn-warning mt-4 d-flex justify-content-between w-25" type="button" data-bs-toggle="collapse" data-bs-target="#tools" aria-expanded="false" aria-controls="tools">
+          <span>Tools and Frameworks</span> <span>&#9660;</span>
+        </button>
+        <div class="collapse mt-3 w-50" id="tools">
+          <div class="card card-body d-flex flex-row flex-wrap gap-2 bg-dark text-white" id="tool-card">
+          </div>
+        </div>
+        <button class="btn btn-warning mt-4 d-flex justify-content-between w-25" type="button" data-bs-toggle="collapse" data-bs-target="#languages" aria-expanded="false" aria-controls="languages">
+          <span>languages</span> <span>&#9660;</span>
+        </button>
+        <div class="collapse mt-3 w-50" id="languages">
+          <div class="card card-body">
+          </div>
+        </div>
       </div>
     </div>
   </body>
