@@ -18,59 +18,61 @@
   <title>Templates</title>
 </head>
   <body>
-    <nav class="navbar custom-nav-bg navbar-expand-lg border-light border-bottom" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('dashboard') }}">
-          <img src="{{ url_for('static', filename='images/gitlogonav.svg') }}" alt="Bootstrap" width="45" height="45">
-          GitCraft
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul class="navbar-nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active custom-nav-toggle" aria-current="page" href="{{ url_for('dashboard') }}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link custom-nav-toggle" href="{{ url_for('temps') }}">Templates</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link custom-nav-toggle" href="{{ url_for('settings') }}">Settings</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                Profile
-              </a>
-              <!-- <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Refresh</a></li>
-              </ul> -->
-            </li>
-          </ul>
+    <div class="cover">
+      <nav class="navbar custom-nav-bg navbar-expand-lg border-light border-bottom" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('dashboard') }}">
+            <img src="{{ url_for('static', filename='images/gitlogonav.svg') }}" alt="Bootstrap" width="45" height="45">
+            GitCraft
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link active custom-nav-toggle" aria-current="page" href="{{ url_for('dashboard') }}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link custom-nav-toggle" href="{{ url_for('temps') }}">Templates</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link custom-nav-toggle" href="{{ url_for('settings') }}">Settings</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                  Profile
+                </a>
+                <!-- <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Refresh</a></li>
+                </ul> -->
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-      <div class="offcanvas-header">
-        <h3 class="offcanvas-title text-primary" id="offcanvasRightLabel">{{ name }}</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body d-flex flex-column align-items-center overflow-x-hidden">
-        <img class="rounded-circle w-75" src="{{ avatar }}" id="offcanvas-avatar"/>
-        <div class="container-fluid d-flex justify-content-start mt-5 mb-1 ms-5">
-          <span class="d-inline-block border-2 border-end border-primary w-25">Login</span>
-          <span class="d-inline-block ps-2">{{ login }}</span>
-        </div> 
-        <div class="container-fluid d-flex justify-content-start mb-1 ms-5">
-          <span class="d-inline-block border-2 border-end border-primary w-25 ">Plan</span>
-          <span class="d-inline-block ps-2">{{ plan }}</span>
+      </nav>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h3 class="offcanvas-title text-primary" id="offcanvasRightLabel">{{ name }}</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="container-fluid d-flex justify-content-start mb-5 ms-5">
-          <span class="d-inline-block border-2 border-end border-primary w-25">Token</span>
-          <span class="d-inline-block ps-2" id="token-display" data-tokenshow="{{ token }}">***********</span>
+        <div class="offcanvas-body d-flex flex-column align-items-center overflow-x-hidden">
+          <img class="rounded-circle w-75" src="{{ avatar }}" id="offcanvas-avatar"/>
+          <div class="container-fluid d-flex justify-content-start mt-5 mb-1 ms-5">
+            <span class="d-inline-block border-2 border-end border-primary w-25">Login</span>
+            <span class="d-inline-block ps-2">{{ login }}</span>
+          </div> 
+          <div class="container-fluid d-flex justify-content-start mb-1 ms-5">
+            <span class="d-inline-block border-2 border-end border-primary w-25 ">Plan</span>
+            <span class="d-inline-block ps-2">{{ plan }}</span>
+          </div>
+          <div class="container-fluid d-flex justify-content-start mb-5 ms-5">
+            <span class="d-inline-block border-2 border-end border-primary w-25">Token</span>
+            <span class="d-inline-block ps-2" id="token-display" data-tokenshow="{{ token }}">***********</span>
+          </div>
+  
+          <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
         </div>
-
-        <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
       </div>
     </div>
   </body>

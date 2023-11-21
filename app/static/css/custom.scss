@@ -9,7 +9,10 @@ body {
   background: linear-gradient(to bottom left, #24243E, #3e2370);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+}
+
+.cover {
+  min-height: 100vh;
 }
 
 /**************** NAV BAR STYLING ************************/
