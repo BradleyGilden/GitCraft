@@ -5,11 +5,12 @@ const detailsForm = document.getElementById('gitUserDetails')
 const clearBtn = document.getElementById('git-clear');
 const toolCard = document.getElementById('tool-card');
 const langCard = document.getElementById('lang-card');
-
-
+const checkContainer = document.getElementById('customize');
 
 const toolsList = ["docker", "VsCode", "Flask", "ExpressJs", "NodeJs", "React", "Vue"]
 const langsList = ["JavaScript", "Python", "C", "C++", "C#", "Ruby", "Go", "Rust", "SQL", "Scala"]
+
+// populates the list of tools and frameworks
 for (let tool of toolsList) {
   toolCard.innerHTML += `
   <div class="form-check">
@@ -21,6 +22,7 @@ for (let tool of toolsList) {
   `;
 }
 
+// populates the list of languages
 for (let lang of langsList) {
   langCard.innerHTML += `
   <div class="form-check">
@@ -43,10 +45,12 @@ textarea.addEventListener('input', function() {
   charCountElement.innerHTML = 'Bio ' + charCount + '/160';
 });
 
+// removes count when away from bio input
 textarea.addEventListener('blur', function() {
   charCountElement.textContent = 'Bio';
 })
 
+// customizes the hireable check button
 hireableCheck.addEventListener('change', function() {
   if (hireableCheck.checked && !hireableCheck.classList.contains('bg-warning')) {
     hireableCheck.classList.add('bg-warning');
@@ -54,6 +58,8 @@ hireableCheck.addEventListener('change', function() {
     hireableCheck.classList.remove('bg-warning');
   }
 })
+
+// looks for
 
 clearBtn.onclick = (() => {
   for (let i = 0; i < detailsForm.elements.length; i++) {
