@@ -63,6 +63,8 @@ def db_login():
             # load the info into the session
             for key, value in all_info.items():
                 session[key] = value
+            session["langs"] = response[0]["langs"]
+            session["tools"] = response[0]["tools"]
             session["token"] = response[0]["token"]
             session["gitcraft_user"] = json_data["username"]
             return redirect(url_for("dashboard"))
@@ -91,9 +93,10 @@ def db_logout():
 def db_update():
     """updates a users custom details"""
     try:
+        default_data = {"langs": session["langs"], "tools": session["tools"]}
         custom_data = request.get_json()
         response = doc_update(mongo.db.users, session["gitcraft_user"],
-                              custom_data)
+                              custom_data, default_data)
         if response[1] < 400:
             session["langs"] = response[0]["langs"]
             session["tools"] = response[0]["tools"]

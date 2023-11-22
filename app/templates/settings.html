@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
   <!-- scripts -->
   <script defer src="{{ url_for('static', filename='js/general.js') }}"></script>
+  <script defer>
+    const sessionTools = {{ tools | tojson | safe }};
+    const sessionLangs = {{ langs | tojson | safe }};
+  </script>
   <script defer src="{{ url_for('static', filename='js/settings.js') }}"></script>
   <title>Settings</title>
 </head>
@@ -114,7 +118,6 @@
           <h5 class="text-warning text-center">Select in order of most importance</h5>
           <div class="card card-body d-flex flex-row flex-wrap gap-2 bg-dark text-white" id="tool-card">
           </div>
-          <p class="tool-list-display text-white"></p>
         </div>
         <button class="btn btn-warning mt-4 d-flex justify-content-between w-25" type="button" data-bs-toggle="collapse" data-bs-target="#languages" aria-expanded="false" aria-controls="languages">
           <span>languages</span> <span>&#9660;</span>
@@ -123,11 +126,10 @@
           <h5 class="text-warning text-center">Select in order of most importance</h5>
           <div class="card card-body d-flex flex-row flex-wrap gap-2 bg-dark text-white" id="lang-card">
           </div>
-          <p class="lang-list-display text-white"></p>
         </div>
         <div class="d-flex gap-1 w-50 justify-content-center mt-5">
           <button class="btn btn-success text-white w-25" type="submit">Update</button>
-          <button class="btn btn-secondary w-25" type="button">Clear</button>
+          <button class="btn btn-secondary w-25" id="custom-clear" type="button">Clear</button>
         </div>
       </form>
     </div>

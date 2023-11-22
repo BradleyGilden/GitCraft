@@ -36,7 +36,7 @@ def doc_login(collection, document: dict) -> list:
         return [doc, 200]
 
 
-def doc_update(collection, username, document: dict) -> list:
+def doc_update(collection, username, document: dict, default: dict) -> list:
     """updates customized details of a user"""
     try:
         doc = collection.update_one({"username": username},
@@ -51,6 +51,7 @@ def doc_update(collection, username, document: dict) -> list:
             doc = collection.find_one({"username": username})
             return [{"langs": doc["langs"], "tools": doc["tools"]}, 200]
         else:
-            return [{"langs": ["sample"], "tools": ["placeholder"]}, 204]
+            return [{"langs": default["langs"], "tools": default["tools"]},
+                    204]
     except WriteError:
         return ["WriteError", 400]

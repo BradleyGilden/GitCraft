@@ -8,44 +8,57 @@ const langCard = document.getElementById('lang-card');
 const checkForm = document.getElementById('customize');
 const toolsContainer = document.getElementById('tools');
 const langsContainer = document.getElementById('languages');
-const toolText = document.querySelector('.tool-list-display');
-const langText = document.querySelector('.lang-list-display');
+const customClear = document.getElementById('custom-clear');
+const sessionValues = sessionTools.concat(sessionLangs);
 
 let toolList = [];
 let langList = [];
-const toolLib = ["docker", "VsCode", "Flask", "ExpressJs", "NodeJs", "React", "Vue"]
-const langLib = ["JavaScript", "Python", "C", "C++", "C#", "Ruby", "Go", "Rust", "SQL", "Scala"]
+const toolLib = {"docker": "Docker", "vscode": "Vs Code", "flask": "Flask",
+                 "expressjs": "ExpressJs", "nodejs": "NodeJs", "react": "React",
+                 "vue": "Vue"}
+const langLib = {"javascript": "JavaScript", "python": "Python", "c": "C",
+                 "cpp": "C++", "csharp": "C#", "ruby": "Ruby", "go": "Go",
+                 "rust": "Rust", "sql": "SQL", "scala": "Scala"}
 
 // populates the list of tools and frameworks
-for (let tool of toolLib) {
-  let idVal = tool.toLowerCase()
+for (let [key, value] of Object.entries(toolLib)) {
   toolCard.innerHTML += `
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="${idVal}" id="${idVal}">
-    <label class="form-check-label" for="${idVal}">
-      ${tool}
+    <input class="form-check-input" type="checkbox" name="${key}" id="${key}">
+    <label class="form-check-label" for="${key}">
+      ${value}
     </label>
   </div>
   `;
 }
 
 // populates the list of languages
-for (let lang of langLib) {
-  let idVal = lang.toLowerCase()
-  if (idVal === 'c++') {
-    idVal = 'cpp';
-  } else if (idVal === 'c#') {
-    idVal = 'csharp';
-  }
+for (let [key, value] of Object.entries(langLib)) {
   langCard.innerHTML += `
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="${idVal}" id="${idVal}">
-    <label class="form-check-label" for="${idVal}">
-      ${lang}
+    <input class="form-check-input" type="checkbox" name="${key}" id="${key}">
+    <label class="form-check-label" for="${key}">
+      ${value}
     </label>
   </div>
   `;
 }
+
+// ensures checks are constant upon reload
+for (let key of Object.keys({...toolLib, ...langLib})) {
+  if (sessionValues.includes(key)) {
+    document.getElementById(key).checked = true;
+  } else {
+    document.getElementById(key).checked = false;
+  }
+}
+
+// handles clearing checks for customizations
+customClear.onclick = (() => {
+  for (let key of Object.keys({...toolLib, ...langLib})) {
+    document.getElementById(key).checked = false;
+  }
+});
 
 // Add event listener for the 'input' event
 textarea.addEventListener('input', function() {
@@ -71,28 +84,6 @@ hireableCheck.addEventListener('change', function() {
     hireableCheck.classList.remove('bg-warning');
   }
 })
-
-// looks for language and tool checks
-toolsContainer.addEventListener('change', (event) => {
-  if (event.target instanceof HTMLInputElement && event.target.type === 'checkbox') {
-    if (event.target.checked) {
-      toolList.push(event.target.labels[0].textContent);
-    } else {
-      toolList = toolList.filter(item => item !== event.target.labels[0].textContent);
-    }
-  }
-  toolText.textContent = toolList.join(", ");
-});
-langsContainer.addEventListener('change', (event) => {
-  if (event.target instanceof HTMLInputElement && event.target.type === 'checkbox') {
-    if (event.target.checked) {
-      langList.push(event.target.labels[0].textContent);
-    } else {
-      langList = langList.filter(item => item !== event.target.labels[0].textContent);
-    }
-  }
-  langText.textContent = langList.join(", ");
-});
 
 clearBtn.onclick = (() => {
   for (let i = 0; i < detailsForm.elements.length; i++) {
