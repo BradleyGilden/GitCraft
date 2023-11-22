@@ -34,3 +34,23 @@ def doc_login(collection, document: dict) -> list:
         return ["invalid_credentials", 400]
     else:
         return [doc, 200]
+
+
+def doc_update(collection, username, document: dict) -> list:
+    """updates customized details of a user"""
+    try:
+        doc = collection.update_one({"username": username},
+                                    {
+                                        "$set": {
+                                            "langs": document["langs"],
+                                            "tools": document["tools"]
+                                        }
+                                    },
+                                    upsert=True)
+        if doc.modified_count > 0:
+            doc = collection.find_one({"username": username})
+            return [{"langs": doc["langs"], "tools": doc["tools"]}, 200]
+        else:
+            return [{"langs": ["sample"], "tools": ["placeholder"]}, 204]
+    except WriteError:
+        return ["WriteError", 400]

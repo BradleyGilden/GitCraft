@@ -9,7 +9,7 @@ Date: 12-11-2023
 
 from flask import Blueprint, jsonify, request, session, url_for, redirect
 from app.modules.user import User
-from app.modules.mongo_crud import doc_signup, doc_login  # noqa
+from app.modules.mongo_crud import doc_signup, doc_login, doc_update  # noqa
 from flask_pymongo import PyMongo
 
 # Create a Flask Blueprint
@@ -34,7 +34,9 @@ def db_signup():
             "username": request.form.get("username"),
             "password": request.form.get("password"),
             "token": request.form.get("token"),
-            "login": request.form.get("login")
+            "login": request.form.get("login"),
+            "langs": [],
+            "tools": []
         }
 
         response = doc_signup(mongo.db.users, json_data)
@@ -76,9 +78,27 @@ def db_logout():
     session_data = {
         "login", "avatar", "name", "company", "blog", "location", "email",
         "hireable", "bio", "space_available", "plan", "following", "followers",
-        "repo_count", "created_at", "repo_space", "socials", "streak", "pinned"
+        "repo_count", "created_at", "repo_space", "socials", "streak",
+        "pinned", "token", "gitcraft_user", "langs", "tools"
     }
     # releases data from session
     for data in session_data:
         session.pop(data, None)
     return redirect(url_for('authentication')), 302
+
+
+@db_bp.route('/update', strict_slashes=False, methods=["PUT"])
+def db_update():
+    """updates a users custom details"""
+    try:
+        custom_data = request.get_json()
+        response = doc_update(mongo.db.users, session["gitcraft_user"],
+                              custom_data)
+        if response[1] < 400:
+            session["langs"] = response[0]["langs"]
+            session["tools"] = response[0]["tools"]
+            return jsonify({"message": response[0]}), response[1]
+        else:
+            return jsonify({"message": response[0]}), response[1]
+    except Exception as e:
+        return jsonify({"message": e}), 400

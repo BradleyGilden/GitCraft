@@ -5,17 +5,24 @@ const detailsForm = document.getElementById('gitUserDetails')
 const clearBtn = document.getElementById('git-clear');
 const toolCard = document.getElementById('tool-card');
 const langCard = document.getElementById('lang-card');
-const checkContainer = document.getElementById('customize');
+const checkForm = document.getElementById('customize');
+const toolsContainer = document.getElementById('tools');
+const langsContainer = document.getElementById('languages');
+const toolText = document.querySelector('.tool-list-display');
+const langText = document.querySelector('.lang-list-display');
 
-const toolsList = ["docker", "VsCode", "Flask", "ExpressJs", "NodeJs", "React", "Vue"]
-const langsList = ["JavaScript", "Python", "C", "C++", "C#", "Ruby", "Go", "Rust", "SQL", "Scala"]
+let toolList = [];
+let langList = [];
+const toolLib = ["docker", "VsCode", "Flask", "ExpressJs", "NodeJs", "React", "Vue"]
+const langLib = ["JavaScript", "Python", "C", "C++", "C#", "Ruby", "Go", "Rust", "SQL", "Scala"]
 
 // populates the list of tools and frameworks
-for (let tool of toolsList) {
+for (let tool of toolLib) {
+  let idVal = tool.toLowerCase()
   toolCard.innerHTML += `
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="${tool}Id">
-    <label class="form-check-label" for="${tool}Id">
+    <input class="form-check-input" type="checkbox" name="${idVal}" id="${idVal}">
+    <label class="form-check-label" for="${idVal}">
       ${tool}
     </label>
   </div>
@@ -23,11 +30,17 @@ for (let tool of toolsList) {
 }
 
 // populates the list of languages
-for (let lang of langsList) {
+for (let lang of langLib) {
+  let idVal = lang.toLowerCase()
+  if (idVal === 'c++') {
+    idVal = 'cpp';
+  } else if (idVal === 'c#') {
+    idVal = 'csharp';
+  }
   langCard.innerHTML += `
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="${lang}Id">
-    <label class="form-check-label" for="${lang}Id">
+    <input class="form-check-input" type="checkbox" name="${idVal}" id="${idVal}">
+    <label class="form-check-label" for="${idVal}">
       ${lang}
     </label>
   </div>
@@ -59,7 +72,27 @@ hireableCheck.addEventListener('change', function() {
   }
 })
 
-// looks for
+// looks for language and tool checks
+toolsContainer.addEventListener('change', (event) => {
+  if (event.target instanceof HTMLInputElement && event.target.type === 'checkbox') {
+    if (event.target.checked) {
+      toolList.push(event.target.labels[0].textContent);
+    } else {
+      toolList = toolList.filter(item => item !== event.target.labels[0].textContent);
+    }
+  }
+  toolText.textContent = toolList.join(", ");
+});
+langsContainer.addEventListener('change', (event) => {
+  if (event.target instanceof HTMLInputElement && event.target.type === 'checkbox') {
+    if (event.target.checked) {
+      langList.push(event.target.labels[0].textContent);
+    } else {
+      langList = langList.filter(item => item !== event.target.labels[0].textContent);
+    }
+  }
+  langText.textContent = langList.join(", ");
+});
 
 clearBtn.onclick = (() => {
   for (let i = 0; i < detailsForm.elements.length; i++) {
@@ -71,6 +104,45 @@ clearBtn.onclick = (() => {
   }
 });
 
+// submits custom information to mongodb
+checkForm.addEventListener('submit', async function(event){
+  event.preventDefault();
+  // const loadingAnimation = document.querySelector('.signup .loader');
+  // loadingAnimation.style.display = 'flex';
+  let langPut = {"langs": []}
+  let toolPut = {"tools": []}
+  const formData = new FormData(checkForm);
+  formData.forEach((value, key) => {
+    if (document.getElementsByName(key)[0].parentNode.parentNode.id === 'tool-card') {
+      toolPut.tools.push(key)
+    } else if (document.getElementsByName(key)[0].parentNode.parentNode.id === 'lang-card') {
+      langPut.langs.push(key)
+    }
+  });
+  const response = await fetch(checkForm.action,
+    {
+      method: 'PUT',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({"langs": langPut.langs, "tools": toolPut.tools})
+    }
+  );
+  // loadingAnimation.style.display = 'none';
+  if (response.ok) {
+    Swal.fire({
+      title: "Updated!",
+      icon: "success"
+    });
+  } else {
+    const jsonResponse = await response.json()
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: jsonResponse.message
+    });
+  }
+});
+
+// alters github detail information
 detailsForm.addEventListener('submit', async function(event){
   event.preventDefault();
   // const loadingAnimation = document.querySelector('.signup .loader');
