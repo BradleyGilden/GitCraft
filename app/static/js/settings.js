@@ -13,12 +13,31 @@ const sessionValues = sessionTools.concat(sessionLangs);
 
 let toolList = [];
 let langList = [];
-const toolLib = {"docker": "Docker", "vscode": "Vs Code", "flask": "Flask",
-                 "expressjs": "ExpressJs", "nodejs": "NodeJs", "react": "React",
-                 "vue": "Vue"}
-const langLib = {"javascript": "JavaScript", "python": "Python", "c": "C",
-                 "cpp": "C++", "csharp": "C#", "ruby": "Ruby", "go": "Go",
-                 "rust": "Rust", "sql": "SQL", "scala": "Scala"}
+const toolLib = {
+  "VsCode|#0078D4|https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white": "Vs Code",
+  "Flask|#000000|https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white": "Flask",
+  "Nodejs|#43853D|https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white": "Node.js",
+  "React|#61DAFB|https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB": "React",
+  "Vuejs|#35495E|https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D": "Vue.js",
+  "MySQL|#00000F|https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white":"MySQL",
+  "MongoDB|#4EA94B|https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white": "MongoDB",
+  "Flutter|#02569B|https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white": "Flutter",
+  "Spring|#6DB33F|https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white": "Spring",
+  "Angular|#DD0031|https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white": "Angular"
+}
+const langLib = {
+  "JavaScript|#F7DF1E|https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black": "JavaScript",
+  "Python|#14354C|https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white": "Python",
+  "C|#00599C|https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white": "C",
+  "C++|#00599C|https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white": "C++",
+  "C#|#239120|https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white": "C#",
+  "Java|#ED8B00|https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white": "Java",
+  "Ruby|#CC342D|https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white": "Ruby",
+  "Go|#00ADD8|https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white": "Go",
+  "Rust|#000000|https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white": "Rust",
+  "PHP|#777BB4|https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white": "PHP",
+  "Scala|#DC322F|https://img.shields.io/badge/Scala-DC322F?style=for-the-badge&logo=scala&logoColor=white": "Scala"
+}
 
 // populates the list of tools and frameworks
 for (let [key, value] of Object.entries(toolLib)) {
@@ -98,8 +117,12 @@ clearBtn.onclick = (() => {
 // submits custom information to mongodb
 checkForm.addEventListener('submit', async function(event){
   event.preventDefault();
-  // const loadingAnimation = document.querySelector('.signup .loader');
-  // loadingAnimation.style.display = 'flex';
+  const customUpdate = document.querySelector('#custom-update');
+  const loadingAnimation = `
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Updating...</span>
+  `;
+  customUpdate.innerHTML = loadingAnimation;
   let langPut = {"langs": []}
   let toolPut = {"tools": []}
   const formData = new FormData(checkForm);
@@ -117,7 +140,7 @@ checkForm.addEventListener('submit', async function(event){
       body: JSON.stringify({"langs": langPut.langs, "tools": toolPut.tools})
     }
   );
-  // loadingAnimation.style.display = 'none';
+  customUpdate.innerHTML = "Update";
   if (response.ok) {
     Swal.fire({
       title: "Updated!",
@@ -136,11 +159,15 @@ checkForm.addEventListener('submit', async function(event){
 // alters github detail information
 detailsForm.addEventListener('submit', async function(event){
   event.preventDefault();
-  // const loadingAnimation = document.querySelector('.signup .loader');
-  // loadingAnimation.style.display = 'flex';
+  const gitUpdate = document.querySelector('#git-update');
+  const loadingAnimation = `
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Updating...</span>
+  `;
+  gitUpdate.innerHTML = loadingAnimation;
   const formData = new FormData(detailsForm);
   const response = await fetch(detailsForm.action, {method: 'PATCH', body: formData});
-  // loadingAnimation.style.display = 'none';
+  gitUpdate.innerHTML = "Update";
   if (response.ok) {
     Swal.fire({
       title: "Updated!",
