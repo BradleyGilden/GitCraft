@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap');
+
+* {
+  font-family: 'Oswald', sans-serif;
+}
+
+body {
+  background: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h1 {
+  font-weight: 700;
+  color:rgb(255, 255, 255);
+  width: 75%;
+  text-align: center;
+}
+
+.try-btn {
+  width: max(120px, 15%);
+}
+.try-btn:hover {
+  background-color: black;
+  color: white;
+  border: 0px;
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+}
+
+.cover {
+  min-height: 100vh;
+}
+
+.banner {
+  background-color: rgb(220, 18, 220);
+  height: 400px;
+}
