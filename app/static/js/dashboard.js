@@ -30,7 +30,7 @@ new Chart(ctx, {
         color : "black",
         font: {
           family: 'Poppins, sans-serif',
-          size: 16
+          size: 18
         }
       },
       legend: {

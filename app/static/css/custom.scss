@@ -6,7 +6,9 @@
   font-family: 'Poppins', sans-serif;
 }
 body {
-  background: linear-gradient(to bottom left, #24243E, #3e2370);
+  background: #232526; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #000000, rgb(128, 0, 255)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -18,7 +20,7 @@ body {
 /**************** NAV BAR STYLING ************************/
 .custom-nav {
   &-bg {
-    background: linear-gradient(to left, #381a7f, #000000);
+    background: linear-gradient(to left, #0d002d, #000000);
   }
 }
 
@@ -40,8 +42,32 @@ body {
 
 .navbar-nav.nav-pills {
   .nav-link.active {
-    background-color: #09af00;
+    background-color: #c606dbbc;
+    box-shadow: 0px 0px 10px #c606db;
   }
 }
 
-/**************** Charts Config *******************/
+/**************** Button Config *******************/
+.view-btn {
+  background-color: rgb(191, 0, 191);
+  border-color: rgb(191, 0, 191);
+}
+
+/**************** animations *******************/
+.slider {
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+}
+
+.slide-in {
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+  100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateY(0%); }
+}

@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Landing Page</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
 </head>
 <body>
-    <h1>Hey I am Bradley</h1>
-    <img src="https://avatars.githubusercontent.com/u/122790675?v=4" />
-    <a href="{{ url_for('authentication') }}">authentication here</a>
+  <div class="cover">
+    <div class="container-fluid banner d-flex align-items-center justify-content-around ">
+      <div class="d-flex flex-column row-gap-5 align-items-center">
+        <h1>Your One Stop Tool For GitHub</h1>
+        <a class="btn btn-light try-btn" href="{{ url_for('authentication') }}">Try For Free</a>
+      </div>
+      <img src="{{ url_for('static', filename='images/gitlogonav.svg') }}" class="h-100">
+    </div>
+  </div>
 </body>
 </html>

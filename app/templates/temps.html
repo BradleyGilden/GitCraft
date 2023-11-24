@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
   <!-- scripts -->
   <script defer src="{{ url_for('static', filename='js/general.js') }}"></script>
-  <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/temps.js') }}"></script>
   <title>Templates</title>
 </head>
   <body>
@@ -72,6 +72,35 @@
           </div>
   
           <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
+        </div>
+      </div>
+      <div class="container d-flex flex-wrap mt-4 justify-content-around slide-in slider">
+        <div class="card temp-cards" style="width: 18rem;">
+          <img src="../static/images/background2.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Portfolio</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a target="_blank" href="{{ url_for('tmp.view_portfolio') }}" class="btn btn-primary view-btn">View</a>
+            <button data-download="{{ url_for('tmp.download_portfolio') }}" type="button" id="download-btn1" class="btn btn-success text-white">Download</button>
+          </div>
+        </div>
+        <div class="card temp-cards" style="width: 18rem;">
+          <img src="../static/images/background2.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Portfolio</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a  href="#" class="btn btn-primary view-btn">View</a>
+            <a id="dowload-btn2" href="#" class="btn btn-success text-white">Download</a>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="../static/images/background2.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Portfolio</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary view-btn">View</a>
+            <a id="dowload-btn3" href="#" class="btn btn-success text-white">Download</a>
+          </div>
         </div>
       </div>
     </div>
