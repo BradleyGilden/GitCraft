@@ -10,6 +10,7 @@ from flask import Flask, render_template, session
 from flask_cors import CORS
 from app.blueprints.api_blueprint import api_bp
 from app.blueprints.db_blueprint import db_bp, mongo
+from app.blueprints.temp_blueprint import tmp_bp
 from secrets import token_hex
 
 app = Flask(__name__)
@@ -24,6 +25,7 @@ mongo.init_app(app)
 # Registering blueprints
 app.register_blueprint(db_bp, url_prefix='/db')
 app.register_blueprint(api_bp, url_prefix='/api')
+app.register_blueprint(tmp_bp, url_prefix='/tmp')
 
 # Enabling CORS
 cors = CORS(app, resources={r"/*": {"origins": "*"}})

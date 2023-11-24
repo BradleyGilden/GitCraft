@@ -18,7 +18,7 @@
   <title>{{name}}'s Dashboard</title>
 </head>
   <body>
-    <div class="cover">
+    <div class="cover d-flex flex-column">
       <nav class="navbar custom-nav-bg navbar-expand-lg border-light border-bottom" data-bs-theme="dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{ url_for('dashboard') }}">
@@ -74,7 +74,7 @@
           <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
         </div>
       </div>
-      <div class="board d-flex align-items-center container mt-5 gap-4">
+      <div class="board d-flex align-items-center gap-4 flex-grow-1 justify-content-center px-5">
         <div class="board__chart1 rounded-5 p-3" data-repospace="{{ repo_space }}" data-availablespace="{{ space_available }}">
           <canvas class="board__chart1-pie"></canvas>
         </div>
