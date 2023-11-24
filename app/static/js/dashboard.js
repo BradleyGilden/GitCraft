@@ -16,8 +16,8 @@ new Chart(ctx, {
       borderWidth: 2,
       backgroundColor: [
         'rgb(4, 217, 61)',
-        'rgb(25, 163, 255)',
-        'rgb(163, 163, 163)'
+        'rgb(132, 2, 219)',
+        'rgb(19, 16, 59)'
       ],
       hoverOffset: 10
     }],
