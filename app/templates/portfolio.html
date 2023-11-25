@@ -25,19 +25,26 @@
         <h3 class="bio-title mt-4">About Me</h3>
         <p class="bio">{{ bio }}</p>
         <h3 class="mt-2">Tools and Frameworks</h3>
-        <div class="d-flex flex-wrap column-gap-2 row-gap-1" style="width: 80%;">
+        <div class="slide-in-left d-flex flex-wrap column-gap-2 row-gap-1" style="width: 80%;">
           {% for ti in toolimgs %}
             <img src="{{ ti }}" class="tools d-inline-block"></img>
           {% endfor %}
         </div>
         <h3 class="mt-3">Languages</h3>
-        <div class="d-flex flex-wrap column-gap-2 row-gap-1" style="width: 80%;">
+        <div class="slide-in-left d-flex flex-wrap column-gap-2 row-gap-1" style="width: 80%;">
           {% for li in langimgs %}
             <img src="{{ li }}" class="tools d-inline-block"></img>
           {% endfor %}
         </div>
+        <button class="btn btn-dark mt-5 bg-black glow-on-hover" type="button" style="width: 120px;">contact me</button>
       </div>
       <img class="profile" src="{{ avatar }}" alt="">
+      <div class="ps-5 badges d-flex align-items-center">
+        <div class="commits d-flex column-gap-2">
+          <img src="https://img.icons8.com/glyph-neue/64/github.png" alt="github"/>
+          <p class="text-black">{{ streak.total }} commits</p>
+        </div>
+      </div>
     </div>
   </div>
 </body>
