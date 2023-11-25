@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap');
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0idmlzdWFsIiB2aWV3Qm94PSIwIDAgOTYwIDU0MCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI1NDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI1NDAiIGZpbGw9IiMwNTA2MDkiPjwvcmVjdD48cGF0aCBkPSJNMzQ5IDBMMzU2LjIgMTVDMzYzLjMgMzAgMzc3LjcgNjAgNDA3LjcgOTBDNDM3LjcgMTIwIDQ4My4zIDE1MCA1MDUuMyAxODBDNTI3LjMgMjEwIDUyNS43IDI0MCA0OTAuMyAyNzBDNDU1IDMwMCAzODYgMzMwIDM4Ni4zIDM2MEMzODYuNyAzOTAgNDU2LjMgNDIwIDQ4Mi4zIDQ1MEM1MDguMyA0ODAgNDkwLjcgNTEwIDQ4MS44IDUyNUw0NzMgNTQwTDAgNTQwTDAgNTI1QzAgNTEwIDAgNDgwIDAgNDUwQzAgNDIwIDAgMzkwIDAgMzYwQzAgMzMwIDAgMzAwIDAgMjcwQzAgMjQwIDAgMjEwIDAgMTgwQzAgMTUwIDAgMTIwIDAgOTBDMCA2MCAwIDMwIDAgMTVMMCAwWiIgZmlsbD0iI2ZmY2YwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIj48L3BhdGg+PC9zdmc+");
+}
+
+
+.cover {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+.tools {
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.navigation {
+    height: 20px;
+    width: 100%;
+}
+
+.menu-button::after{
+    position: absolute;
+    content: "projects  ➤";
+    color: white;
+    right: 85px;
+}
+.menu-button {
+    height: 30px;
+    width: 30px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAVUlEQVR4nO3WwQkAMAzDQI2eDTuSO4bB6ED/hn4MkqSGPG4h8shCtB/gIW/4R24hJEkSzvi0t1WWR2MWYumQWwhJkoQzPu1tleXRmIVYOuQWQpJEwQdq9ERov1ldzwAAAABJRU5ErkJggg==");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.profile {
+    height: 100%;
+    flex: 1;
+    justify-self: flex-end;
+    filter: grayscale(100%)  contrast(140%);
+}
+
+.info {
+    flex: 1;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.8rem;
+}
+
+.bio {
+    width: 70%;
+}

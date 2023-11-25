@@ -17,7 +17,10 @@ tmp_bp = Blueprint('tmp', __name__)
 @tmp_bp.route("/vporfolio", strict_slashes=False)
 def view_portfolio():
     """allows the user to dynamically view the downloaded portfolio"""
-    return render_template("portfolio.html", **session)
+    tools = [tool.split("|")[2] for tool in session["tools"]]
+    langs = [lang.split("|")[2] for lang in session["langs"]]
+    return render_template("portfolio.html", **session, toolimgs=tools,
+                           langimgs=langs)
 
 
 @tmp_bp.route("/dporfolio", strict_slashes=False)
