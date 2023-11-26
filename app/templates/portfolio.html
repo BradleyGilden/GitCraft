@@ -17,26 +17,47 @@
   <div class="cover d-flex flex-column">
     <nav class="navbar py-3 d-flex justify-content-between px-5">
       <h5 class="name">{{ name }}</h5>
-      <button class="btn btn-dark bg-black glow-on-hover" type="button" style="width: 120px;">contact me</button>
+      <button class="btn btn-dark bg-black glow-on-hover contact" type="button" style="width: 120px;">contact me</button>
       <div class="menu-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"></div>
     </nav>
     <div class="offcanvas offcanvas-top h-100" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title text-center w-100" id="offcanvasTopLabel">Projects</h5>
+        <h5 class="offcanvas-title text-center w-100 ms-3" id="offcanvasTopLabel">Projects</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <div id="carouselExampleAutoplaying" class="carousel slide h-75" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <h1>SLIDE 1</h1>
-            </div>
-            <div class="carousel-item">
-              <h1>SLIDE 2</h1>
-            </div>
-            <div class="carousel-item">
-              <h1>SLIDE 3</h1>
-            </div>
+          <div class="carousel-inner d-flex align-items-center justify-content-start h-100">
+            {% if pinned|length == 0 %}
+              <div class="carousel-item">
+                <h6>no pinned repositories, please pin at least one repository to see is view</h6>
+              </div>
+            {% else %}
+              <div class="carousel-item active bg-black ms-4">
+                <h1 class="text-center text-white">{{ pinned[0].name }}</h1>
+                <h6 class="text-center mx-5 text-white mb-5">{{ pinned[0].description }}</h6>
+                <h4 class="text-center text-white">Most Used Language: {{pinned[0].primaryLanguage.name}}</h4>
+                <h5 class="text-center text-white">Collaborators: 
+                  {% for person in pinned[0].collaborators.nodes %}
+                    {{ person.login }}
+                  {% endfor %}
+                </h5>
+                <p class="text-center text-white"><a target="_blank" class="link-warning" style="font-size: 1.5rem;" href="{{pinned[0].url}}">View Project</a></p>
+              </div>
+                {% for i in range(1, pinned|length) %}
+                <div class="carousel-item bg-black ms-4">
+                  <h1 class="text-center text-white">{{ pinned[i].name }}</h1>
+                  <h6 class="text-center mx-5 text-white mb-5">{{ pinned[i].description }}</h6>
+                  <h4 class="text-center text-white">Most Used Language: {{pinned[i].primaryLanguage.name}}</h4>
+                  <h5 class="text-center text-white">Collaborators: 
+                    {% for person in pinned[i].collaborators.nodes %}
+                      {{ person.login }}
+                    {% endfor %}
+                  </h5>
+                  <p class="text-center text-white"><a class="link-warning" style="font-size: 1.5rem;" href="{{pinned[0].url}}">View Project</a></p>
+                </div>
+                {% endfor %}
+            {% endif %}
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
             <span class="carousel-control-prev-icon bg-black rounded-circle" aria-hidden="true"></span>

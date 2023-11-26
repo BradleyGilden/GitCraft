@@ -187,3 +187,7 @@ body {
     font-family: 'Oswald', sans-serif;
     font-size: 3rem;
 }
+
+.carousel-inner{
+    padding-right: 70px;
+}
