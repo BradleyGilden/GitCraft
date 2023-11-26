@@ -176,3 +176,14 @@ body {
 .commits img {
     height: 35px;
 }
+
+.offcanvas-top {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    background-color: #ffcf00;
+}
+
+.offcanvas-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+}

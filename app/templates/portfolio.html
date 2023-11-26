@@ -17,8 +17,38 @@
   <div class="cover d-flex flex-column">
     <nav class="navbar py-3 d-flex justify-content-between px-5">
       <h5 class="name">{{ name }}</h5>
-      <div class="menu-button"></div>
+      <button class="btn btn-dark bg-black glow-on-hover" type="button" style="width: 120px;">contact me</button>
+      <div class="menu-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"></div>
     </nav>
+    <div class="offcanvas offcanvas-top h-100" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-center w-100" id="offcanvasTopLabel">Projects</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="carouselExampleAutoplaying" class="carousel slide h-75" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <h1>SLIDE 1</h1>
+            </div>
+            <div class="carousel-item">
+              <h1>SLIDE 2</h1>
+            </div>
+            <div class="carousel-item">
+              <h1>SLIDE 3</h1>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-black rounded-circle" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-black rounded-circle" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="content d-flex flex-grow-1 justify-content-between vw-100">
       <div class="info ps-5 d-flex flex-column">
         <h2 class="title mt-5">Hi, my name is {{ name }}</h2>
@@ -36,14 +66,15 @@
             <img src="{{ li }}" class="tools d-inline-block"></img>
           {% endfor %}
         </div>
-        <button class="btn btn-dark mt-5 bg-black glow-on-hover" type="button" style="width: 120px;">contact me</button>
       </div>
       <img class="profile" src="{{ avatar }}" alt="">
-      <div class="ps-5 badges d-flex align-items-center">
+      <div class="ps-5 badges d-flex align-items-center column-gap-3">
         <div class="commits d-flex column-gap-2">
           <img src="https://img.icons8.com/glyph-neue/64/github.png" alt="github"/>
           <p class="text-black">{{ streak.total }} commits</p>
         </div>
+        <p class="text-black">{{ repo_count }} respositories</p>
+        <p class="text-black">{{ followers }} followers</p>
       </div>
     </div>
   </div>
