@@ -1,11 +1,17 @@
 const downBtn1 = document.getElementById('download-btn1');
 
 downBtn1.addEventListener('click', async function() {
+  const loadingAnimation = `
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Updating...</span>
+  `;
+  downBtn1.innerHTML = loadingAnimation;
   const response = await fetch(downBtn1.dataset.download, {
     method: 'GET',
     headers: {'Content-Type': 'application/zip'}
   });
   const blob = await response.blob();
+  downBtn1.innerHTML = "Download";
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
   link.download = 'downloaded_file.zip'; // Specify the filename

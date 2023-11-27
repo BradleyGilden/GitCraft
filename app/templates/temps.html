@@ -57,7 +57,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column align-items-center overflow-x-hidden">
-          <img class="rounded-circle w-75" src="{{ avatar }}" id="offcanvas-avatar"/>
+          <img class="rounded-circle w-75 circleshadow" src="{{ avatar }}" id="offcanvas-avatar"/>
           <div class="container-fluid d-flex justify-content-start mt-5 mb-1 ms-5">
             <span class="d-inline-block border-2 border-end border-primary w-25">Login</span>
             <span class="d-inline-block ps-2">{{ login }}</span>
@@ -78,8 +78,8 @@
         <div class="card temp-cards" style="width: 18rem;">
           <img src="../static/images/background2.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Portfolio</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">Portfolio - Single Page</h5>
+            <p class="card-text">Black and Yellow themed portfolio. Ensure you have selected tools and language customizations</p>
             <a target="_blank" href="{{ url_for('tmp.view_portfolio') }}" class="btn btn-primary view-btn">View</a>
             <button data-download="{{ url_for('tmp.download_portfolio') }}" type="button" id="download-btn1" class="btn btn-success text-white">Download</button>
           </div>

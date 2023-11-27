@@ -12033,7 +12033,12 @@ body {
   color: rgb(149, 38, 246);
 }
 
-/*************** CUSTOM SWEET ALERT ***************/
+.circleshadow {
+  border: 5px solid #dc2bff;
+  filter: drop-shadow(0 0 8px #7722ff);
+}
+
+/*************** CUSTOM SWEET ALERT **************/
 .navbar-nav.nav-pills .nav-link.active {
   background-color: rgba(198, 6, 219, 0.737254902);
   box-shadow: 0px 0px 10px #c606db;
