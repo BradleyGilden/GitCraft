@@ -105,3 +105,17 @@ def db_update():
             return jsonify({"message": response[0]}), response[1]
     except Exception as e:
         return jsonify({"message": e}), 400
+
+
+@db_bp.route('/refresh', strict_slashes=False, methods=["GET"])
+def db_refresh():
+    """refreshes information from github"""
+    try:
+        user = User(session["token"], session["login"])
+        all_info = user.get_all_info()
+        # load the info into the session
+        for key, value in all_info.items():
+            session[key] = value
+        return jsonify({"message": "success"}), 200
+    except Exception:
+        return jsonify({"message": "failure"}), 400

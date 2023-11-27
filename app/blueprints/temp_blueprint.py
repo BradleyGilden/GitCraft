@@ -7,7 +7,7 @@ Author: Bradley Dillion Gilden
 Date: 24-11-2023
 """
 
-from flask import (Blueprint, render_template, jsonify, request,  # noqa
+from flask import (Blueprint, render_template,
                    session, current_app, make_response)
 import zipfile
 from io import BytesIO
@@ -66,7 +66,7 @@ def download_portfolio():
 
     zip_buffer.seek(0)
     response = make_response(zip_buffer.read())
-    attach_header = "attachment; filename=portfolio.zip"
-    response.headers["Content-Disposition"] = attach_header
+    attatch_header = "attachment; filename=portfolio.zip"
+    response.headers["Content-Disposition"] = attatch_header
     response.headers["Content-Type"] = "application/zip"
     return response

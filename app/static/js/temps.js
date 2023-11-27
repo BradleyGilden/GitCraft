@@ -14,7 +14,7 @@ downBtn1.addEventListener('click', async function() {
   downBtn1.innerHTML = "Download";
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
-  link.download = 'downloaded_file.zip'; // Specify the filename
+  link.download = 'portfolio.zip'; // Specify the filename
   // Append the link to the document
   document.body.appendChild(link);
   // Trigger a click on the link to start the download

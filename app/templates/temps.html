@@ -70,8 +70,10 @@
             <span class="d-inline-block border-2 border-end border-primary w-25">Token</span>
             <span class="d-inline-block ps-2" id="token-display" data-tokenshow="{{ token }}">***********</span>
           </div>
-  
-          <a class="btn btn-primary d-block w-75" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
+          <div class="d-flex w-100 justify-content-center column-gap-2 ">
+            <a class="btn btn-success text-white d-block w-50" href="#" id="refresh-btn" data-refresh="{{ url_for('db.db_refresh') }}">Refresh</a>
+            <a class="btn btn-primary d-block w-50" href="#" id="logout-btn" data-logout="{{ url_for('db.db_logout') }}">Logout</a>
+          </div>
         </div>
       </div>
       <div class="container d-flex flex-wrap mt-4 justify-content-around slide-in slider">
