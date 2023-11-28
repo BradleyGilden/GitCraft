@@ -104,8 +104,8 @@
                 <option value="Web">Web</option>
               </select> developer. This option will be used in the simple, responsive black & white portfolio
             </div>
-            <a  target="_blank" href="{{ url_for('tmp.view_portfolio_scrollable', param1='Frontend') }}" id="view-param" class="btn btn-primary view-btn">View</a>
-            <a data-download="{{ url_for('tmp.download_portfolio_scrollable', param1='Frontend') }}" type="button" id="dowload-btn2" href="#" class="btn btn-success text-white">Download</a>
+            <a data-select="{{ url_for('tmp.view_portfolio_scrollable', param1='') }}"  target="_blank" href="{{ url_for('tmp.view_portfolio_scrollable', param1='Frontend') }}" id="view-param" class="btn btn-primary view-btn">View</a>
+            <button data-download="{{ url_for('tmp.download_portfolio_scrollable', param1='Frontend') }}" type="button" id="dowload-btn2" class="btn btn-success text-white">Download</button>
           </div>
         </div>
         <div class="card" style="width: 18rem;">
@@ -119,21 +119,5 @@
         </div>
       </div>
     </div>
-    <script>
-      // Get the select element and link
-      const select = document.getElementById('dev-type');
-      const viewLink = document.getElementById('view-param');
-      const downloadLink = document.getElementById('download-btn2');
-
-      // Add an event listener to the select element
-      select.addEventListener('change', function() {
-          // Get the selected value
-          const selectedValue = select.value;
-
-          // Update the href attribute of the link with the selected value
-          viewLink.href = "{{ url_for('tmp.view_portfolio_scrollable', param1='') }}" + selectedValue;
-          downloadLink.href = "{{ url_for('tmp.download_portfolio_scrollable', param1='') }}" + selectedValue;
-      });
-  </script>
   </body>
 </html>
