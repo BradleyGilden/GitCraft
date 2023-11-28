@@ -56,7 +56,7 @@
               <a class="nav-link custom-nav-toggle" href="#projects-title">Projects</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link custom-nav-toggle" href="#">Contact</a>
+              <a class="nav-link custom-nav-toggle" href="#contact-title">Contact</a>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@
     </nav>
     <section class="container d-flex justify-content-center gap-5 align-items-center greeting">
       <div class="img-container rounded-circle">
-        <img class="profile rounded-circle" src="{{ avatar }}" alt="profile">
+        <img class="img-fluid rounded-circle" src="{{ avatar }}" alt="profile">
       </div>
       <div class="info d-flex flex-column align-items-center">
         <p class="mb-2">Hello, I'm</p>
@@ -75,7 +75,7 @@
             <img id="giticon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuUlEQVR4nO2VSytFURiGNwpRBpSOazqYGrskoswIYWxi4D4wNfIvkFuMlCKdGCi/wMToGDEwU+S4X45HqxZntVp77bU3yeC8dTq19/e+z/6+1sXzsvpvAmqBaeAQSAL38peUz6aAmt8EVgGLwDvBSgPbQN1Pof3AHeGVAvqiQmdlB1ElvDNROk3/AKrC3ToHqg3jbQaagJUA0Iqsa9XGXukCNoUXaNPoAMqBPPnfKZ4rNYWaf9lly5hWb4PTuDI5jZr/XUzSZhD71KS2kOB2Q8akzXBgMOyEgSpZe1pOwlZ8ZgC3RATrXSdtxWIF+i6skOBiLSdlKxZnr66SiOAyLefBVnxuAPdGBA9qORe24oQBfCL2ZUhoEXCq5ezbDHOYdeR0+mROvmNDxpzNVAO8+sAfgVVgGIhrvjgwAqwDTwbvK1AR9MWbimEU2DV8QI/m6QKe8deG68V/LQ1XQCmwJYNvgHkf34IP9DawWyVkSLkWxxw99QaoyBhwgipBE8AHcAl0B61sINcAHQ8F/ZK4xOV4v+VZpJRdh+5Ul9hGwBLw5gB+AdaAmPdbAmLy2sz3eZ/jutez8v5Sn8nRzQ3u3U6IAAAAAElFTkSuQmCC" alt="github">
           Follow Me
           </a>
-          <button class="btn btn-outline-dark rounded-5">Contact</button>
+          <a href="#contact-title" class="btn btn-outline-dark rounded-5">Contact</a>
         </div>
         <div class="d-flex flex-wrap social-container gap-3 justify-content-center">
           {% for name in socials %}
@@ -86,36 +86,51 @@
         </div>
       </div>
     </section>
-    <section class="about pt-3 container w-50">
+    <section class="about pt-3 container">
       <h2 id="about-title" class="text-center fw-semibold mb-3">About Me</h2>
       <h5 class="h5">{{ bio }}</h5>
     </section>
-    <section class="skills mt-5 pt-5 container w-50">
+    <section class="skills mt-5 pt-5 container">
       <h2 id="skills-title" class="text-center fw-semibold mb-3">Skills</h2>
-      <div class="d-flex justify-content-between">
+      <div class="skills-container d-flex justify-content-center flex-wrap row-gap-4">
         <div class="tools d-flex flex-column align-items-center">
           <h4 class="tools-title fw-semibold text-secondary text-decoration-underline">Frameworks & Tools</h4>
-          {% for name in toolimgs %}
-          <h5 class="text-secondary fw-light">{{ name }}</h5>
-          {% endfor %}
+          <div class="tool-content">
+            {% for name in toolimgs %}
+            <h5 class="text-secondary fw-light">{{ name }}</h5>
+            {% endfor %}
+          </div>
         </div>
         <div class="langs d-flex flex-column align-items-center">
           <h4 class="langs-title fw-semibold text-secondary text-decoration-underline">Languages</h4>
-          {% for name in langimgs %}
-          <h5 class="text-secondary fw-light">{{ name }}</h5>
-          {% endfor %}
+          <div class="lang-content">
+            {% for name in langimgs %}
+            <h5 class="text-secondary fw-light">{{ name }}</h5>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </section>
-    <section class="projects mt-5 container w-50">
+    <section class="projects mt-5 container">
       <h2 id="projects-title" class="text-center fw-semibold mb-4">Projects</h2>
-      <div class="project-cards d-flex flex-wrap gap-3">
-        {% for i in range(pinned|length) %}
+      <div class="project-cards d-flex column-gap-4 row-gap-3 flex-wrap justify-content-center">
+        {% for i in range(pinned|length - 3) %}
         <div class="project-card rounded-4 bg-secondary p-3">
-          <h4 class="h4 text-white">{{ pinned[i].name }}</h4>
+          <h4 class="h4 text-white mb-2">{{ pinned[i].name }}</h4>
+          <p class="text-white">{{ pinned[i].description }}</p>
+          <a target="_blank" class="project-button btn btn-light text-secondary" href="{{ pinned[i].url }}">View Project</a>
         </div>
         {% endfor %}
       </div>
+    </section>
+    <section class="contact mt-5 pt-5 container">
+      <h2 id="contact-title" class="text-center fw-semibold mb-4">Contact Me</h2>
+        {% if hireable %}
+        <h5 class="h5 text-center">I am now available for hire!</h5>
+        {% else %}
+        <h5 class="h5 text-center">I am now employed at {{ company }}</h5>
+        {% endif %}
+        <h5 class="h5 text-center">E-mail: {{ email }}</h5>
     </section>
   </div>
 </body>

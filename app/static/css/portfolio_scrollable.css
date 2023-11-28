@@ -56,6 +56,29 @@ body {
     height: 80px;
 }
 
+.project-card {
+    width: max(30%, 250px);
+}
+
+.skills-container {
+    gap: 25%;
+}
+
+.projects {
+    width: 60%;
+}
+
+.about {
+    width: 55%;
+}
+
+.skills {
+    width: 60%;
+}
+
+.contact {
+    width: 55%;
+}
 
 /**
  * ----------------------------------------
@@ -76,5 +99,67 @@ body {
     }
     100% {
         text-shadow: 0 0 18px rgba(0, 0, 0, 0.496);
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar-brand {
+        flex-grow: 1;
+        padding-inline-start: 70px;
+        text-align: center;
+    }
+    .greeting {
+        flex-direction: column;
+    }
+    .info {
+        flex-grow: 2;
+    }
+    .img-container.rounded-circle {
+        height: 30vh;
+        width: 30vh;
+        border-radius: 0px;
+    }
+    .social-container {
+        padding-top: 40px;
+    }
+    .h5 {
+        font-size: 1rem;
+    }
+    .about {
+        width: 80%;
+    }
+
+    .langs {
+        flex-direction: row;
+        align-items: start;
+    }
+
+    .langs h4 {
+        font-size: 1.2rem;
+    }
+    .tools h4 {
+        font-size: 1.2rem;
+    }
+
+    .langs h5 {
+        display: inline;
+        font-size: 1rem;
+        padding-inline: 5px;
+    }
+    .tools h5 {
+        display: inline;
+        font-size: 1rem;
+        padding-inline: 5px;
+    }
+    .skills {
+        width: 80%;
+    }
+
+    .projects {
+        width: 80%;
+    }
+
+    .contact {
+        width: 90%;
     }
 }
