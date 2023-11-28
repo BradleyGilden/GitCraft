@@ -2,7 +2,6 @@ const downBtn1 = document.getElementById('download-btn1');
 const downBtn2 = document.getElementById('download-btn2');
 const select = document.getElementById('dev-type');
 const viewLink = document.getElementById('view-param');
-const downloadLink = document.getElementById('download-btn2');
 
 // Add an event listener to the select element
 select.addEventListener('change', function() {
@@ -16,7 +15,7 @@ select.addEventListener('change', function() {
 downBtn1.addEventListener('click', async function() {
   const loadingAnimation = `
   <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-  <span role="status">Updating...</span>
+  <span role="status">Downloading...</span>
   `;
   downBtn1.innerHTML = loadingAnimation;
   const response = await fetch(downBtn1.dataset.download, {
@@ -40,7 +39,7 @@ downBtn2.addEventListener('click', async function() {
   const queryString = new URLSearchParams({param1: select.value}).toString();
   const loadingAnimation = `
   <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-  <span role="status">Updating...</span>
+  <span role="status">Downloading...</span>
   `;
   downBtn2.innerHTML = loadingAnimation;
   const response = await fetch(`${downBtn2.dataset.download}?${queryString}`, {
