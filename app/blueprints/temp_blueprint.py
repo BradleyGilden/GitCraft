@@ -51,8 +51,8 @@ def download_portfolio():
 @tmp_bp.route("/vscrollable", strict_slashes=False)
 def view_portfolio_scrollable():
     """allows the user to dynamically view the downloaded portfolio"""
-    tools = [tool.split("|")[2] for tool in session["tools"]]
-    langs = [lang.split("|")[2] for lang in session["langs"]]
+    tools = [tool.split("|")[0] for tool in session["tools"]]
+    langs = [lang.split("|")[0] for lang in session["langs"]]
     return render_template("portfolio_scrollable.html", **session,
                            toolimgs=tools, langimgs=langs, downloadable=False,
                            occupation=request.args.get('param1'))
@@ -61,8 +61,8 @@ def view_portfolio_scrollable():
 @tmp_bp.route("/dscrollable", strict_slashes=False)
 def download_portfolio_scrollable():
     """downloads the portfolio that was dynamically created"""
-    tools = [tool.split("|")[2] for tool in session["tools"]]
-    langs = [lang.split("|")[2] for lang in session["langs"]]
+    tools = [tool.split("|")[0] for tool in session["tools"]]
+    langs = [lang.split("|")[0] for lang in session["langs"]]
 
     css_file_path = '/static/css/portfolio_scrollable.css'
     html_content = render_template("portfolio_scrollable.html", **session,

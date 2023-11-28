@@ -93,11 +93,17 @@
     <section class="skills mt-5 container w-50">
       <h2 id="skills-title" class="text-center fw-semibold mb-3">Skills</h2>
       <div class="d-flex justify-content-between">
-        <div class="tools">
-          <h4 class="tools-title">Frameworks & Tools</h4>
+        <div class="tools d-flex flex-column align-items-center">
+          <h4 class="tools-title fw-semibold text-secondary">Frameworks & Tools</h4>
+          {% for name in toolimgs %}
+          <h5 class="text-secondary fw-light">{{ name }}</h5>
+          {% endfor %}
         </div>
-        <div class="langs">
-          <h4 class="langs-title">Languages</h4>
+        <div class="langs d-flex flex-column align-items-center">
+          <h4 class="langs-title fw-semibold text-secondary">Languages</h4>
+          {% for name in langimgs %}
+          <h5 class="text-secondary fw-light">{{ name }}</h5>
+          {% endfor %}
         </div>
       </div>
     </section>
