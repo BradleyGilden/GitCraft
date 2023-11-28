@@ -7,7 +7,7 @@ Author: Bradley Dillion Gilden
 Date: 24-11-2023
 """
 
-from flask import (Blueprint, render_template,
+from flask import (Blueprint, render_template, request,  # noqa
                    session, current_app, make_response)
 import zipfile
 from io import BytesIO
@@ -54,7 +54,8 @@ def view_portfolio_scrollable():
     tools = [tool.split("|")[2] for tool in session["tools"]]
     langs = [lang.split("|")[2] for lang in session["langs"]]
     return render_template("portfolio_scrollable.html", **session,
-                           toolimgs=tools, langimgs=langs, downloadable=False)
+                           toolimgs=tools, langimgs=langs, downloadable=False,
+                           occupation=request.args.get('param1'))
 
 
 @tmp_bp.route("/dscrollable", strict_slashes=False)
@@ -66,7 +67,8 @@ def download_portfolio_scrollable():
     css_file_path = '/static/css/portfolio_scrollable.css'
     html_content = render_template("portfolio_scrollable.html", **session,
                                    toolimgs=tools, langimgs=langs,
-                                   downloadable=True)
+                                   downloadable=True,
+                                   occupation=request.args.get('param1'))
     css_content = open(current_app.root_path +
                        css_file_path).read()
     zip_buffer = BytesIO()
