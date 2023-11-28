@@ -41,7 +41,7 @@ body {
 }
 
 .greeting{
-    margin: 8%;
+    height: calc(100vh - 80px)
 }
 
 #giticon {
@@ -50,6 +50,10 @@ body {
 
 .follow-me {
     height: 40px;
+}
+
+.navbar {
+    height: 80px;
 }
 
 /**
