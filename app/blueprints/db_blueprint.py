@@ -98,6 +98,17 @@ def db_login():
                 "https://img.icons8.com/ios-filled/50/snapchat--v1.png",
                 "default": "https://img.icons8.com/ios/50/circled.png"
             }
+            session["socialicons2"] = {
+                "instagram": "ri-instagram-fill",
+                "facebook": "ri-facebook-circle-fill",
+                "linkedin": "ri-linkedin-fill",
+                "twitter": "ri-twitter-fill",
+                "reddit": "ri-reddit-fill",
+                "telegram": "ri-telegram-fill",
+                "discord": "ri-discord-fill",
+                "snapchat": "ri-snapchat-fill",
+                "default": "ri-circle-fill"
+            }
             return redirect(url_for("dashboard"))
         else:
             return jsonify({"message": response[0]}), response[1]

@@ -83,3 +83,58 @@ def download_portfolio_scrollable():
     response.headers["Content-Disposition"] = attatch_header
     response.headers["Content-Type"] = "application/zip"
     return response
+
+
+@tmp_bp.route("/vresponsive", strict_slashes=False)
+def view_portfolio_responsive():
+    """allows the user to dynamically view the downloaded portfolio"""
+    commits = int(session["streak"]["total"])
+    tools = [tool.split("|")[0] for tool in session["tools"]]
+    langs = [lang.split("|")[0] for lang in session["langs"]]
+    toolcol = [tool.split("|")[1] for tool in session["tools"]]
+    langcol = [lang.split("|")[1] for lang in session["langs"]]
+    toolicon = zip(tools, toolcol)
+    langicon = zip(langs, langcol)
+    if commits > 1000:
+        commits = str(round(commits/1000, 2)) + "K+"
+
+    return render_template("portfolio_responsive.html", **session,
+                           downloadable=False,
+                           occupation=request.args.get('param1'),
+                           commits=commits, toolicon=toolicon,
+                           langicon=langicon)
+
+
+@tmp_bp.route("/dresponsive", strict_slashes=False)
+def download_portfolio_responsive():
+    """downloads the portfolio that was dynamically created"""
+    commits = int(session["streak"]["total"])
+    tools = [tool.split("|")[0] for tool in session["tools"]]
+    langs = [lang.split("|")[0] for lang in session["langs"]]
+    toolcol = [tool.split("|")[1] for tool in session["tools"]]
+    langcol = [lang.split("|")[1] for lang in session["langs"]]
+
+    toolicon = zip(tools, toolcol)
+    langicon = zip(langs, langcol)
+    if commits > 1000:
+        commits = str(round(commits/1000, 2)) + "K+"
+
+    css_file_path = '/static/css/portfolio_responsive.css'
+    html_content = render_template("portfolio_responsive.html", **session,
+                                   downloadable=True, commits=commits,
+                                   occupation=request.args.get('param1'),
+                                   toolicon=toolicon, langicon=langicon)
+    css_content = open(current_app.root_path +
+                       css_file_path).read()
+    zip_buffer = BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'a',
+                         zipfile.ZIP_DEFLATED, False) as zip_file:
+        zip_file.writestr('portfolio_responsive.html', html_content)
+        zip_file.writestr('portfolio_responsive.css', css_content)
+
+    zip_buffer.seek(0)
+    response = make_response(zip_buffer.read())
+    attatch_header = "attachment; filename=portfolio_responsive.zip"
+    response.headers["Content-Disposition"] = attatch_header
+    response.headers["Content-Type"] = "application/zip"
+    return response

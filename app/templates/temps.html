@@ -81,7 +81,7 @@
           <img src="../static/images/background2.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Portfolio - Single Page</h5>
-            <p class="card-text">Black and Yellow themed portfolio. Ensure you have selected tools and language customizations</p>
+            <p class="card-text">This is A single paged black and yellow themed portfolio designed with Bootstrap 5. Not suitable for mobile</p>
             <a target="_blank" href="{{ url_for('tmp.view_portfolio') }}" class="btn btn-primary view-btn">View</a>
             <button data-download="{{ url_for('tmp.download_portfolio') }}" type="button" id="download-btn1" class="btn btn-success text-white">Download</button>
           </div>
@@ -89,7 +89,7 @@
         <div class="card temp-cards" style="width: 18rem;">
           <img src="../static/images/background2.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Portfolio</h5>
+            <h5 class="card-title">Portfolio - B & W</h5>
             <div class="card-text mb-3">Choose role: 
               <select class="border-0 text-primary border-bottom border-3" id="dev-type">
                 <option value="Frontend">Frontend</option>
@@ -102,7 +102,8 @@
                 <option value="Devops">Devops</option>
                 <option value="Blockchain">Blockchain</option>
                 <option value="Web">Web</option>
-              </select> developer. This option will be used in the simple, responsive black & white portfolio
+              </select>
+              <p class="card-text">This is a simple black and white themed responsive portfolio made with Bootstrap 5</p>
             </div>
             <a data-select="{{ url_for('tmp.view_portfolio_scrollable', param1='') }}"  target="_blank" href="{{ url_for('tmp.view_portfolio_scrollable', param1='Frontend') }}" id="view-param" class="btn btn-primary view-btn">View</a>
             <button data-download="{{ url_for('tmp.download_portfolio_scrollable') }}" type="button" id="download-btn2" class="btn btn-success text-white">Download</button>
@@ -111,10 +112,24 @@
         <div class="card" style="width: 18rem;">
           <img src="../static/images/background2.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Portfolio</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary view-btn">View</a>
-            <a id="dowload-btn3" href="#" class="btn btn-success text-white">Download</a>
+            <h5 class="card-title">Portfolio - Modern</h5>
+            <div class="card-text mb-3">Choose role: 
+              <select class="border-0 text-primary border-bottom border-3" id="dev-type2">
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="Full Stack">Full Stack</option>
+                <option value="Game">Game</option>
+                <option value="Mobile">Mobile</option>
+                <option value="IoT">IoT</option>
+                <option value="Embedded">Embedded</option>
+                <option value="Devops">Devops</option>
+                <option value="Blockchain">Blockchain</option>
+                <option value="Web">Web</option>
+              </select>
+              <p class="card-text">This is a simple black and white themed responsive portfolio made with Bootstrap 5</p>
+            </div>
+            <a data-select="{{ url_for('tmp.view_portfolio_responsive', param1='') }}"  target="_blank" href="{{ url_for('tmp.view_portfolio_responsive', param1='Frontend') }}" id="view-param2" class="btn btn-primary view-btn">View</a>
+            <button data-download="{{ url_for('tmp.download_portfolio_responsive') }}" type="button" id="download-btn3" class="btn btn-success text-white">Download</button>
           </div>
         </div>
       </div>

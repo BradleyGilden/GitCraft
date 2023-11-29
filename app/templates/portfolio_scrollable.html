@@ -123,14 +123,14 @@
         {% endfor %}
       </div>
     </section>
-    <section class="contact mt-5 pt-5 container">
-      <h2 id="contact-title" class="text-center fw-semibold mb-4">Contact Me</h2>
+    <section class="contact mt-5 pt-5 container-fluid vw-100 pb-5" style="background-color: rgb(0, 0, 20, 0.8)">
+      <h2 id="contact-title" class="text-center fw-semibold mb-4 text-white">Contact Me</h2>
         {% if hireable %}
-        <h5 class="h5 text-center">I am now available for hire!</h5>
+        <h5 class="h5 text-center text-secondary">I am now available for hire!</h5>
         {% else %}
-        <h5 class="h5 text-center">I am now employed at {{ company }}</h5>
+        <h5 class="h5 text-center text-secondary">I am now employed at {{ company }}</h5>
         {% endif %}
-        <h5 class="h5 text-center">E-mail: {{ email }}</h5>
+        <h5 class="h5 text-center text-secondary">E-mail: {{ email }}</h5>
     </section>
   </div>
 </body>
