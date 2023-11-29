@@ -88,7 +88,7 @@ downBtn3.addEventListener('click', async function() {
   downBtn3.innerHTML = "Download";
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
-  link.download = 'portfolio_scrollable.zip'; // Specify the filename
+  link.download = 'portfolio_responsive.zip'; // Specify the filename
   // Append the link to the document
   document.body.appendChild(link);
   // Trigger a click on the link to start the download

@@ -69,8 +69,7 @@ def download_portfolio_scrollable():
                                    toolimgs=tools, langimgs=langs,
                                    downloadable=True,
                                    occupation=request.args.get('param1'))
-    css_content = open(current_app.root_path +
-                       css_file_path).read()
+    css_content = open(current_app.root_path + css_file_path).read()
     zip_buffer = BytesIO()
     with zipfile.ZipFile(zip_buffer, 'a',
                          zipfile.ZIP_DEFLATED, False) as zip_file:
@@ -124,8 +123,7 @@ def download_portfolio_responsive():
                                    downloadable=True, commits=commits,
                                    occupation=request.args.get('param1'),
                                    toolicon=toolicon, langicon=langicon)
-    css_content = open(current_app.root_path +
-                       css_file_path).read()
+    css_content = open(current_app.root_path + css_file_path).read()
     zip_buffer = BytesIO()
     with zipfile.ZipFile(zip_buffer, 'a',
                          zipfile.ZIP_DEFLATED, False) as zip_file:
