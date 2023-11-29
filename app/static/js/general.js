@@ -1,4 +1,5 @@
 const logoutButton = document.querySelector('#logout-btn');
+const refreshButton = document.querySelector('#refresh-btn');
 const tokenDisplay = document.querySelector('#token-display');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,6 +43,27 @@ logoutButton.onclick = (()=>{
       });
     }
   });
+});
+
+refreshButton.addEventListener('click', async() => {
+  const loadingAnimation = `
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Refreshing...</span>
+  `;
+  refreshButton.innerHTML = loadingAnimation;
+  const response = await fetch(refreshButton.dataset.refresh, {
+    method: 'GET',
+  });
+  refreshButton.innerHTML = "Refresh";
+  if (response.status < 400) {
+    location.reload(true);
+  } else {
+    Swal.fire({
+      title: "Updated!",
+      icon: "error",
+      text: "failed to reload data"
+    });
+  }
 });
 
 tokenDisplay.addEventListener('mouseenter', () => {

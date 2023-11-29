@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F4F3F2;
+    .navbar {
+        background-color: #F4F3F2;
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: black;
+            font-size: 1.1rem;
+        }
+        .nav-link:hover {
+            color: white;
+            -webkit-animation: text-shadow-drop-center 0.6s both;
+	        animation: text-shadow-drop-center 0.6s both;
+        }
+    }
+
+    .img-container {
+        padding: 0px;
+        width: 30%;
+        background-color: grey;
+        background: rgb(131,131,131);
+        background: linear-gradient(335deg, rgba(131,131,131,1) 0%, rgba(255,255,255,1) 100%);
+    }
+}
+
+.img-container .profile {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.greeting{
+    height: calc(100vh - 80px)
+}
+
+#giticon {
+    height: 100%;
+}
+
+.follow-me {
+    height: 40px;
+}
+
+.navbar {
+    height: 80px;
+}
+
+.project-card {
+    width: max(30%, 250px);
+}
+
+.skills-container {
+    gap: 25%;
+}
+
+.projects {
+    width: 60%;
+}
+
+.about {
+    width: 55%;
+}
+
+.skills {
+    width: 60%;
+}
+
+.contact {
+    width: 55%;
+}
+
+/**
+ * ----------------------------------------
+ * @animation text-shadow-drop-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes text-shadow-drop-center {
+    0% {
+        text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+        text-shadow: 0 0 18px rgba(0, 0, 0, 0.496);
+    }
+}
+@keyframes text-shadow-drop-center {
+    0% {
+        text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+        text-shadow: 0 0 18px rgba(0, 0, 0, 0.496);
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar-brand {
+        flex-grow: 1;
+        padding-inline-start: 70px;
+        text-align: center;
+    }
+    .greeting {
+        flex-direction: column;
+    }
+    .info {
+        flex-grow: 2;
+    }
+    .img-container.rounded-circle {
+        height: 30vh;
+        width: 30vh;
+        border-radius: 0px;
+    }
+    .social-container {
+        padding-top: 40px;
+    }
+    .h5 {
+        font-size: 1rem;
+    }
+    .about {
+        width: 80%;
+    }
+
+    .langs {
+        flex-direction: row;
+        align-items: start;
+    }
+
+    .langs h4 {
+        font-size: 1.2rem;
+    }
+    .tools h4 {
+        font-size: 1.2rem;
+    }
+
+    .langs h5 {
+        display: inline;
+        font-size: 1rem;
+        padding-inline: 5px;
+    }
+    .tools h5 {
+        display: inline;
+        font-size: 1rem;
+        padding-inline: 5px;
+    }
+    .skills {
+        width: 80%;
+    }
+
+    .projects {
+        width: 80%;
+    }
+
+    .contact {
+        width: 90%;
+    }
+}

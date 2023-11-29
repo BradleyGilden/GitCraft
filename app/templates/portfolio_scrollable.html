@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <!-- popper library -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Bootstrap -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha256-MBffSnbbXwHCuZtgPYiwMQbfE7z+GOZ7fBPCNB06Z98=" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  {% if downloadable %}
+  <link rel="stylesheet" href="./portfolio_scrollable.css">
+  {% else %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio_scrollable.css') }}">
+  {% endif %}
+  <!-- Flickity Library -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <script defer src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
+  <!-- initialize tool tips -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="cover">
+    <nav class="navbar custom-nav-bg navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          {{ name }}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link custom-nav-toggle" href="#about-title">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custom-nav-toggle" href="#skills-title">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custom-nav-toggle" href="#projects-title">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custom-nav-toggle" href="#contact-title">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="container d-flex justify-content-center gap-5 align-items-center greeting">
+      <div class="img-container rounded-circle">
+        <img class="img-fluid rounded-circle" src="{{ avatar }}" alt="profile">
+      </div>
+      <div class="info d-flex flex-column align-items-center">
+        <p class="mb-2">Hello, I'm</p>
+        <h2 class="fw-bold">{{ name }}</h2>
+        <h5 class="mb-3">{{ occupation }} developer</h5>
+        <div class="d-flex gap-2 mb-2">
+          <a target="_blank" href="https://github.com/{{ login }}" class="btn btn-dark follow-me rounded-5">
+            <img id="giticon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuUlEQVR4nO2VSytFURiGNwpRBpSOazqYGrskoswIYWxi4D4wNfIvkFuMlCKdGCi/wMToGDEwU+S4X45HqxZntVp77bU3yeC8dTq19/e+z/6+1sXzsvpvAmqBaeAQSAL38peUz6aAmt8EVgGLwDvBSgPbQN1Pof3AHeGVAvqiQmdlB1ElvDNROk3/AKrC3ToHqg3jbQaagJUA0Iqsa9XGXukCNoUXaNPoAMqBPPnfKZ4rNYWaf9lly5hWb4PTuDI5jZr/XUzSZhD71KS2kOB2Q8akzXBgMOyEgSpZe1pOwlZ8ZgC3RATrXSdtxWIF+i6skOBiLSdlKxZnr66SiOAyLefBVnxuAPdGBA9qORe24oQBfCL2ZUhoEXCq5ezbDHOYdeR0+mROvmNDxpzNVAO8+sAfgVVgGIhrvjgwAqwDTwbvK1AR9MWbimEU2DV8QI/m6QKe8deG68V/LQ1XQCmwJYNvgHkf34IP9DawWyVkSLkWxxw99QaoyBhwgipBE8AHcAl0B61sINcAHQ8F/ZK4xOV4v+VZpJRdh+5Ul9hGwBLw5gB+AdaAmPdbAmLy2sz3eZ/jutez8v5Sn8nRzQ3u3U6IAAAAAElFTkSuQmCC" alt="github">
+          Follow Me
+          </a>
+          <a href="#contact-title" class="btn btn-outline-dark rounded-5">Contact</a>
+        </div>
+        <div class="d-flex flex-wrap social-container gap-3 justify-content-center">
+          {% for name in socials %}
+          <a target="_blank" class="link-dark d-flex flex-column align-items-center" href="{{ name.url }}" data-bs-toggle="tooltip" data-bs-title="{{ name.provider }}" data-bs-placement="bottom">
+            <img class="socialicon" style="height:40px; width:40px;" src="{{ socialicons1[name.provider]|default(socialicons1.default) }}" alt="{{ name.provider }}">
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <section class="about pt-3 container">
+      <h2 id="about-title" class="text-center fw-semibold mb-3">About Me</h2>
+      <h5 class="h5">{{ bio }}</h5>
+    </section>
+    <section class="skills mt-5 pt-5 container">
+      <h2 id="skills-title" class="text-center fw-semibold mb-3">Skills</h2>
+      <div class="skills-container d-flex justify-content-center flex-wrap row-gap-4">
+        <div class="tools d-flex flex-column align-items-center">
+          <h4 class="tools-title fw-semibold text-secondary text-decoration-underline">Frameworks & Tools</h4>
+          <div class="tool-content">
+            {% for name in toolimgs %}
+            <h5 class="text-secondary fw-light">{{ name }}</h5>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="langs d-flex flex-column align-items-center">
+          <h4 class="langs-title fw-semibold text-secondary text-decoration-underline">Languages</h4>
+          <div class="lang-content">
+            {% for name in langimgs %}
+            <h5 class="text-secondary fw-light">{{ name }}</h5>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="projects mt-5 container">
+      <h2 id="projects-title" class="text-center fw-semibold mb-4">Projects</h2>
+      <div class="project-cards d-flex column-gap-4 row-gap-3 flex-wrap justify-content-center">
+        {% for i in range(pinned|length - 3) %}
+        <div class="project-card rounded-4 bg-secondary p-3">
+          <h4 class="h4 text-white mb-2">{{ pinned[i].name }}</h4>
+          <p class="text-white">{{ pinned[i].description }}</p>
+          <a target="_blank" class="project-button btn btn-light text-secondary" href="{{ pinned[i].url }}">View Project</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="contact mt-5 pt-5 container-fluid vw-100 pb-5" style="background-color: rgb(0, 0, 20, 0.8)">
+      <h2 id="contact-title" class="text-center fw-semibold mb-4 text-white">Contact Me</h2>
+        {% if hireable %}
+        <h5 class="h5 text-center text-secondary">I am now available for hire!</h5>
+        {% else %}
+        <h5 class="h5 text-center text-secondary">I am now employed at {{ company }}</h5>
+        {% endif %}
+        <h5 class="h5 text-center text-secondary">E-mail: {{ email }}</h5>
+    </section>
+  </div>
+</body>
+</html>

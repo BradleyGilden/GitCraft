@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/authentication.css') }}">
   <script defer src="{{ url_for('static', filename='js/authentication.js') }}"></script>
 </head>
-  <body>
+  <body style="background-image: url({{ url_for('static', filename='images/software-meeting.jpg') }})">
     <div class="wrapper">
       <div class="logo-group">
-        <div class="logo"></div>
+        <div class="logo" style="background-image: url({{ url_for('static', filename='images/gitlogowhite.svg') }})"></div>
         <h1 class="pro-title">GitCraft</h1>
       </div>
       <div class="title-text">

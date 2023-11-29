@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&display=swap');
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0idmlzdWFsIiB2aWV3Qm94PSIwIDAgOTYwIDU0MCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI1NDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9Ijk2MCIgaGVpZ2h0PSI1NDAiIGZpbGw9IiMwNTA2MDkiPjwvcmVjdD48cGF0aCBkPSJNMzQ5IDBMMzU2LjIgMTVDMzYzLjMgMzAgMzc3LjcgNjAgNDA3LjcgOTBDNDM3LjcgMTIwIDQ4My4zIDE1MCA1MDUuMyAxODBDNTI3LjMgMjEwIDUyNS43IDI0MCA0OTAuMyAyNzBDNDU1IDMwMCAzODYgMzMwIDM4Ni4zIDM2MEMzODYuNyAzOTAgNDU2LjMgNDIwIDQ4Mi4zIDQ1MEM1MDguMyA0ODAgNDkwLjcgNTEwIDQ4MS44IDUyNUw0NzMgNTQwTDAgNTQwTDAgNTI1QzAgNTEwIDAgNDgwIDAgNDUwQzAgNDIwIDAgMzkwIDAgMzYwQzAgMzMwIDAgMzAwIDAgMjcwQzAgMjQwIDAgMjEwIDAgMTgwQzAgMTUwIDAgMTIwIDAgOTBDMCA2MCAwIDMwIDAgMTVMMCAwWiIgZmlsbD0iI2ZmY2YwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIj48L3BhdGg+PC9zdmc+");
+    overflow: hidden;
+}
+
+
+.cover {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+.tools {
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.navigation {
+    height: 20px;
+    width: 100%;
+}
+
+.menu-button::after{
+    position: absolute;
+    content: "projects  ➤";
+    color: white;
+    right: 85px;
+}
+.menu-button {
+    height: 30px;
+    width: 30px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAVUlEQVR4nO3WwQkAMAzDQI2eDTuSO4bB6ED/hn4MkqSGPG4h8shCtB/gIW/4R24hJEkSzvi0t1WWR2MWYumQWwhJkoQzPu1tleXRmIVYOuQWQpJEwQdq9ERov1ldzwAAAABJRU5ErkJggg==");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.profile {
+    height: 100%;
+    flex: 1;
+    justify-self: flex-end;
+    filter: grayscale(100%)  contrast(140%);
+}
+
+.info {
+    flex: 1;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.8rem;
+}
+
+.bio {
+    width: 70%;
+}
+
+.slide-in-left {
+	-webkit-animation: slide-in-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
+	        animation: slide-in-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
+}
+
+ @-webkit-keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .glow-on-hover {
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.badges {
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+    width: 50%;
+}
+
+.badges p {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.commits img {
+    height: 35px;
+}
+
+.offcanvas-top {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    background-color: #ffcf00;
+}
+
+.offcanvas-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+}
+
+.carousel-inner{
+    padding-right: 70px;
+}

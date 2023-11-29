@@ -6,9 +6,12 @@
   font-family: 'Poppins', sans-serif;
 }
 body {
-  background: #232526; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom right, #000000, rgb(128, 0, 255)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/background2.jpg);
+//   background: #232526; /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
+//   background: linear-gradient(to bottom right, #000000, rgb(128, 0, 255)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -20,7 +23,7 @@ background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25
 /**************** NAV BAR STYLING ************************/
 .custom-nav {
   &-bg {
-    background: linear-gradient(to left, #0d002d, #000000);
+    background: linear-gradient(to left, #0d002da6, #000000a0);
   }
 }
 
@@ -38,7 +41,7 @@ background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25
 /**************** Profile ************************/
 @import "./dashboard";
 
-/*************** CUSTOM SWEET ALERT ***************/
+/*************** CUSTOM SWEET ALERT **************/
 
 .navbar-nav.nav-pills {
   .nav-link.active {

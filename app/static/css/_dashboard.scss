@@ -18,3 +18,26 @@
 #longest-streak {
   color: rgb(149, 38, 246);
 }
+
+.circleshadow {
+  border: 5px solid #dc2bff;
+  animation-name: pulsating;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0 0 8px #7722ff);
+}
+
+@keyframes pulsating {
+  0% {
+    filter: drop-shadow(0 0 8px #7722ff);
+    border: 5px solid #dc2bff;
+  }
+  50% {
+    filter: drop-shadow(0 0 8px #22c72a);
+    border: 5px solid white;
+  }
+  100% {
+    filter: drop-shadow(0 0 8px #7722ff);
+    border: 5px solid #dc2bff;
+  }
+}
