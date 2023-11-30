@@ -19,7 +19,8 @@ class TestUser(unittest.TestCase):
     """Test Class for the user class"""
 
     def setUp(self):
-        self.l
+        self.LOGIN = getenv("LOGIN", "test")
+        self.TOKEN = getenv("TOKEN", "test")
 
     def test_module_documentation(self):
         """tests that user module is documented"""
@@ -45,13 +46,54 @@ class TestUser(unittest.TestCase):
         self.assertGreater(len(User.socials_update.__doc__), 1)
 
     def test_credentials(self):
-        LOGIN = getenv("LOGIN", "test")
-        TOKEN = getenv("TOKEN", "test")
-
-        usr = User(TOKEN, LOGIN)
+        """tests credentials of a user"""
+        usr = User(self.TOKEN, self.LOGIN)
         response_status = usr.test_credentials
         self.assertEqual(200, response_status)
+
+    def test_incorrect_credentials(self):
+        """tests if github is denying wrong credentials"""
+        usr = User("test", "test")
+        response_status = usr.test_credentials
+        self.assertGreaterEqual(response_status, 400)
 
     def test_rate_limits(self):
         """Tests if rate limit usage is being recorded
         """
+        usr = User(self.TOKEN, self.LOGIN)
+        # get current rate limit
+        rate_old = usr.rate_limit
+        # make request to increase rate limit
+        usr.get_all_info()
+        rate_new = usr.rate_limit
+        self.assertGreater(rate_new["rest"], rate_old["rest"])
+        self.assertGreater(rate_new["graphql"], rate_old["graphql"])
+
+    def test_num_commits(self):
+        """tests if integer is being returned when num_commits succeeeds"""
+        usr = User(self.TOKEN, self.LOGIN)
+        commits = usr.num_commits
+        self.assertEqual(type(commits), int)
+        self.assertGreaterEqual(commits, 0)
+
+    def test_num_commits_fail(self):
+        """tests for when num_commits fails"""
+        usr = User("test", "test")
+        commits = usr.num_commits
+        self.assertEqual(commits, {})
+
+    def test_pinned_fail(self):
+        """tests for output when pinned items fail"""
+        usr = User(self.TOKEN, self.LOGIN)
+        pinned = usr.pinned_repos("test")
+        self.assertEqual(pinned, {})
+
+    def test_streak_stats(self):
+        """Tests if streak stat data is logical and of the correct format"""
+        usr = User(self.TOKEN, self.LOGIN)
+        stats = usr.streak_stats
+        self.assertEqual(type(stats["current"]), int)
+        self.assertEqual(type(stats["longest"]), int)
+        self.assertEqual(type(stats["total"]), int)
+        self.assertGreaterEqual(stats["total"], stats["longest"])
+        self.assertGreaterEqual(stats["longest"], stats["current"])
