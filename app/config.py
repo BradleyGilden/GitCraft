@@ -15,10 +15,6 @@ ICON_PACK = {
     "facebook": "https://img.icons8.com/fluency/48/facebook-new.png",
     "linkedin": "https://img.icons8.com/color/48/linkedin.png",
     "twitter": "https://img.icons8.com/color/48/twitter--v1.png",
-    "reddit": "https://img.icons8.com/doodle/48/reddit--v4.png",
-    "telegram": "https://img.icons8.com/color/48/telegram-app.png",
-    "discord": "https://img.icons8.com/color/48/discord-logo.png",
-    "snapchat": "https://img.icons8.com/doodle/48/snapchat.png",
     "default": "https://img.icons8.com/ios/50/circled.png"
 }
 
@@ -27,10 +23,6 @@ ICON_PACK1 = {
     "facebook": "https://img.icons8.com/ios-filled/50/facebook-new.png",
     "linkedin": "https://img.icons8.com/ios-filled/50/linkedin.png",
     "twitter": "https://img.icons8.com/ios-filled/50/twitter.png",
-    "reddit": "https://img.icons8.com/ios-filled/50/reddit--v1.png",
-    "telegram": "https://img.icons8.com/ios-filled/50/telegram-app.png",
-    "discord": "https://img.icons8.com/ios-filled/50/discord-logo.png",
-    "snapchat": "https://img.icons8.com/ios-filled/50/snapchat--v1.png",
     "default": "https://img.icons8.com/ios/50/circled.png"
 }
 
@@ -39,10 +31,6 @@ ICON_PACK2 = {
     "facebook": "ri-facebook-circle-fill",
     "linkedin": "ri-linkedin-fill",
     "twitter": "ri-twitter-fill",
-    "reddit": "ri-reddit-fill",
-    "telegram": "ri-telegram-fill",
-    "discord": "ri-discord-fill",
-    "snapchat": "ri-snapchat-fill",
     "default": "ri-circle-fill"
 }
 
