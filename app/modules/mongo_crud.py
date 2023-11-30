@@ -7,8 +7,7 @@ Author: Bradley Dillion Gilden
 Date: 09-11-2023
 """
 from app.modules.user import User
-from pymongo.errors import BulkWriteError, WriteError  # noqa
-from bson import ObjectId  # noqa
+from pymongo.errors import WriteError
 
 
 def doc_signup(collection, document: dict) -> list:
