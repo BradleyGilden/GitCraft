@@ -62,12 +62,13 @@ class TestUser(unittest.TestCase):
         """
         usr = User(self.TOKEN, self.LOGIN)
         # get current rate limit
-        rate_old = usr.rate_limit
+        rate_old = usr.rate_limits
         # make request to increase rate limit
         usr.get_all_info()
-        rate_new = usr.rate_limit
-        self.assertGreater(rate_new["rest"], rate_old["rest"])
-        self.assertGreater(rate_new["graphql"], rate_old["graphql"])
+        rate_new = usr.rate_limits
+        self.assertGreater(rate_new["rest"]["used"], rate_old["rest"]["used"])
+        self.assertGreater(
+            rate_new["graphql"]["used"], rate_old["graphql"]["used"])
 
     def test_num_commits(self):
         """tests if integer is being returned when num_commits succeeeds"""
@@ -85,8 +86,13 @@ class TestUser(unittest.TestCase):
     def test_pinned_fail(self):
         """tests for output when pinned items fail"""
         usr = User(self.TOKEN, self.LOGIN)
-        pinned = usr.pinned_repos("test")
-        self.assertEqual(pinned, {})
+        self.assertRaises(TypeError, usr.pinned_repos, "test")
+
+    def test_pinned_success(self):
+        """tests for output when query is succesful"""
+        usr = User(self.TOKEN, self.LOGIN)
+        response = usr.pinned_repos(3)
+        self.assertEqual(type(response), list)
 
     def test_streak_stats(self):
         """Tests if streak stat data is logical and of the correct format"""
@@ -97,3 +103,25 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(stats["total"]), int)
         self.assertGreaterEqual(stats["total"], stats["longest"])
         self.assertGreaterEqual(stats["longest"], stats["current"])
+
+    def test_space_occupied_type(self):
+        """tests value type in response of space_occupied"""
+        usr = User(self.TOKEN, self.LOGIN)
+        space = usr.space_occupied
+        self.assertEqual(type(space), int)
+
+    def test_user_info(self):
+        """test if correct user information is returned"""
+        usr = User(self.TOKEN, self.LOGIN)
+        info = usr.info
+        self.assertEqual(info["login"], self.LOGIN)
+
+    def test_user_info_all(self):
+        """check if the all method is adapting the required values from other
+        methods"""
+        usr = User(self.TOKEN, self.LOGIN)
+        info_all = usr.get_all_info()
+
+        self.assertIn("login", info_all)
+        self.assertEqual(info_all["login"], self.LOGIN)
+        self.assertEqual(type(info_all["repo_space"]), int)
