@@ -17,10 +17,13 @@ tmp_bp = Blueprint('tmp', __name__)
 @tmp_bp.route("/vporfolio", strict_slashes=False)
 def view_portfolio():
     """allows the user to dynamically view the downloaded portfolio"""
-    tools = [tool.split("|")[2] for tool in session["tools"]]
-    langs = [lang.split("|")[2] for lang in session["langs"]]
-    return render_template("portfolio.html", **session, toolimgs=tools,
-                           langimgs=langs, downloadable=False)
+    if "login" in session:
+        tools = [tool.split("|")[2] for tool in session["tools"]]
+        langs = [lang.split("|")[2] for lang in session["langs"]]
+        return render_template("portfolio.html", **session, toolimgs=tools,
+                               langimgs=langs, downloadable=False)
+    else:
+        return render_template("authentication.html")
 
 
 @tmp_bp.route("/dporfolio", strict_slashes=False)
@@ -51,11 +54,15 @@ def download_portfolio():
 @tmp_bp.route("/vscrollable", strict_slashes=False)
 def view_portfolio_scrollable():
     """allows the user to dynamically view the downloaded portfolio"""
-    tools = [tool.split("|")[0] for tool in session["tools"]]
-    langs = [lang.split("|")[0] for lang in session["langs"]]
-    return render_template("portfolio_scrollable.html", **session,
-                           toolimgs=tools, langimgs=langs, downloadable=False,
-                           occupation=request.args.get('param1'))
+    if "login" in session:
+        tools = [tool.split("|")[0] for tool in session["tools"]]
+        langs = [lang.split("|")[0] for lang in session["langs"]]
+        return render_template("portfolio_scrollable.html", **session,
+                               toolimgs=tools, langimgs=langs,
+                               downloadable=False,
+                               occupation=request.args.get('param1'))
+    else:
+        return render_template("authentication.html")
 
 
 @tmp_bp.route("/dscrollable", strict_slashes=False)
@@ -87,21 +94,24 @@ def download_portfolio_scrollable():
 @tmp_bp.route("/vresponsive", strict_slashes=False)
 def view_portfolio_responsive():
     """allows the user to dynamically view the downloaded portfolio"""
-    commits = int(session["streak"]["total"])
-    tools = [tool.split("|")[0] for tool in session["tools"]]
-    langs = [lang.split("|")[0] for lang in session["langs"]]
-    toolcol = [tool.split("|")[1] for tool in session["tools"]]
-    langcol = [lang.split("|")[1] for lang in session["langs"]]
-    toolicon = zip(tools, toolcol)
-    langicon = zip(langs, langcol)
-    if commits > 1000:
-        commits = str(round(commits/1000, 2)) + "K+"
+    if "login" in session:
+        commits = int(session["streak"]["total"])
+        tools = [tool.split("|")[0] for tool in session["tools"]]
+        langs = [lang.split("|")[0] for lang in session["langs"]]
+        toolcol = [tool.split("|")[1] for tool in session["tools"]]
+        langcol = [lang.split("|")[1] for lang in session["langs"]]
+        toolicon = zip(tools, toolcol)
+        langicon = zip(langs, langcol)
+        if commits > 1000:
+            commits = str(round(commits/1000, 2)) + "K+"
 
-    return render_template("portfolio_responsive.html", **session,
-                           downloadable=False,
-                           occupation=request.args.get('param1'),
-                           commits=commits, toolicon=toolicon,
-                           langicon=langicon)
+        return render_template("portfolio_responsive.html", **session,
+                               downloadable=False,
+                               occupation=request.args.get('param1'),
+                               commits=commits, toolicon=toolicon,
+                               langicon=langicon)
+    else:
+        return render_template("authentication.html")
 
 
 @tmp_bp.route("/dresponsive", strict_slashes=False)

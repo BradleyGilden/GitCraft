@@ -9,7 +9,8 @@ Date: 12-11-2023
 
 from flask import Blueprint, jsonify, request, session, url_for, redirect
 from app.modules.user import User
-from app.modules.mongo_crud import doc_signup, doc_login, doc_update  # noqa
+from app.modules.mongo_crud import doc_signup, doc_login, doc_update
+from app.config import ICON_PACK, ICON_PACK1, ICON_PACK2, SESSION_KEYS
 from flask_pymongo import PyMongo
 
 # Create a Flask Blueprint
@@ -67,48 +68,9 @@ def db_login():
             session["tools"] = response[0]["tools"]
             session["token"] = response[0]["token"]
             session["gitcraft_user"] = json_data["username"]
-            session["socialicons"] = {
-                "instagram":
-                "https://img.icons8.com/color/48/instagram-new--v1.png",
-                "facebook":
-                "https://img.icons8.com/fluency/48/facebook-new.png",
-                "linkedin": "https://img.icons8.com/color/48/linkedin.png",
-                "twitter": "https://img.icons8.com/color/48/twitter--v1.png",
-                "reddit": "https://img.icons8.com/doodle/48/reddit--v4.png",
-                "telegram": "https://img.icons8.com/color/48/telegram-app.png",
-                "discord": "https://img.icons8.com/color/48/discord-logo.png",
-                "snapchat": "https://img.icons8.com/doodle/48/snapchat.png",
-                "default": "https://img.icons8.com/ios/50/circled.png"
-            }
-            session["socialicons1"] = {
-                "instagram":
-                "https://img.icons8.com/ios-filled/50/instagram-new--v1.png",
-                "facebook":
-                "https://img.icons8.com/ios-filled/50/facebook-new.png",
-                "linkedin":
-                "https://img.icons8.com/ios-filled/50/linkedin.png",
-                "twitter": "https://img.icons8.com/ios-filled/50/twitter.png",
-                "reddit":
-                "https://img.icons8.com/ios-filled/50/reddit--v1.png",
-                "telegram":
-                "https://img.icons8.com/ios-filled/50/telegram-app.png",
-                "discord":
-                "https://img.icons8.com/ios-filled/50/discord-logo.png",
-                "snapchat":
-                "https://img.icons8.com/ios-filled/50/snapchat--v1.png",
-                "default": "https://img.icons8.com/ios/50/circled.png"
-            }
-            session["socialicons2"] = {
-                "instagram": "ri-instagram-fill",
-                "facebook": "ri-facebook-circle-fill",
-                "linkedin": "ri-linkedin-fill",
-                "twitter": "ri-twitter-fill",
-                "reddit": "ri-reddit-fill",
-                "telegram": "ri-telegram-fill",
-                "discord": "ri-discord-fill",
-                "snapchat": "ri-snapchat-fill",
-                "default": "ri-circle-fill"
-            }
+            session["socialicons"] = ICON_PACK
+            session["socialicons1"] = ICON_PACK1
+            session["socialicons2"] = ICON_PACK2
             return redirect(url_for("dashboard"))
         else:
             return jsonify({"message": response[0]}), response[1]
@@ -118,15 +80,8 @@ def db_login():
 
 @db_bp.route('/logout', strict_slashes=False, methods=["POST"])
 def db_logout():
-    """handles logout of a user"""
-    session_data = {
-        "login", "avatar", "name", "company", "blog", "location", "email",
-        "hireable", "bio", "space_available", "plan", "following", "followers",
-        "repo_count", "created_at", "repo_space", "socials", "streak",
-        "pinned", "token", "gitcraft_user", "langs", "tools"
-    }
-    # releases data from session
-    for data in session_data:
+    """releases data from session"""
+    for data in SESSION_KEYS:
         session.pop(data, None)
     return redirect(url_for('authentication')), 302
 

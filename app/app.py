@@ -11,15 +11,14 @@ from flask_cors import CORS
 from app.blueprints.api_blueprint import api_bp
 from app.blueprints.db_blueprint import db_bp, mongo
 from app.blueprints.temp_blueprint import tmp_bp
+from app.config import DATABASE_URL
 from secrets import token_hex
 
 app = Flask(__name__)
 app.secret_key = token_hex(16)
 
-# establishing mongodb connection
-connection_str = ("mongodb+srv://bradleygilden:nanospartan117@cluster0."
-                  "kwwgi0j.mongodb.net/gitcraft?retryWrites=true&w=majority")
-app.config['MONGO_URI'] = connection_str
+# Initializing mongodb connection in flask
+app.config['MONGO_URI'] = DATABASE_URL
 mongo.init_app(app)
 
 # Registering blueprints
