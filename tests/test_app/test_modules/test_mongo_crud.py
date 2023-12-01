@@ -12,7 +12,7 @@ import unittest
 from os import getenv
 from pymongo import MongoClient
 from app.config import DATABASE_URL
-from app.modules.mongo_crud import doc_signup
+from app.modules.mongo_crud import doc_signup, doc_login
 
 
 class TestDB(unittest.TestCase):
@@ -47,3 +47,17 @@ class TestDB(unittest.TestCase):
                               "username": self.USER})
         self.assertEqual(message[0],
                          "invalid credentials (token or github username)")
+
+    def test_login_invalid_credentials(self):
+        """tests for unverified login"""
+        message = doc_login(self.collection, {"username": "Test",
+                                              "password": "1234"})
+        self.assertEqual(message[1], 400)
+
+    def test_login_valid_credentials(self):
+        """tests for verified login"""
+        message = doc_login(self.collection, {
+            "username": "Test",
+            "password": "ThisIsATestPassword123"
+            })
+        self.assertEqual(message[1], 200)
