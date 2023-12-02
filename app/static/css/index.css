@@ -7,7 +7,8 @@
   border-radius: var(--dl-radius-radius-radius8);
   flex-direction: row;
   justify-content: flex-start;
-  background-color: var(--dl-color-gray-white);
+  background-color: #041B37;
+  color: white;
 }
 .feature-card-icon {
   fill: var(--dl-color-primary1-blue80);
@@ -29,7 +30,7 @@
   line-height: 28px;
 }
 .feature-card-text1 {
-  color: var(--dl-color-gray-800);
+  color: #ebebeb;
   line-height: 1.6;
 }
 @media(max-width: 767px) {
@@ -73,7 +74,7 @@
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-image: linear-gradient(to bottom right, #bdc3c7 0%, #2c3e50 100%);
+  background-color: rgb(42, 42, 52);
 }
 .home-header {
   width: 100vw;
