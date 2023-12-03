@@ -141,9 +141,46 @@
   background-position: top;
 }
 .viewgithub {
-  padding: 20 18px;
+  border-radius: 4px;
+  background-color: #5ca1e1;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 32px;
+  padding: 16px;
+  transition: all 0.5s;
   border-radius: 30px;
+  cursor: pointer;
+  margin: 36px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
 }
+
+.viewgithub{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.viewgithub:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;  
+  top: 27%;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.viewgithub:hover{
+  padding-right: 24px;
+  padding-left:8px;
+}
+
+.viewgithub:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
 .customflex {
   gap: 40px;
   width: 100%;
