@@ -163,10 +163,12 @@ class User:
         collection = user.get('user', {})
         calendar = collection.get('contributionsCollection', {})
         total = calendar.get('contributionCalendar', {})
+        # get weekly data
         weeks = total.get('weeks')
 
         longest_streak = 0
         current_streak = 0
+        # parse weekly data for daily commit data
         for week in weeks:
             for day in week['contributionDays']:
                 if day['contributionCount'] > 0:

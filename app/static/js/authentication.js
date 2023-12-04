@@ -22,10 +22,8 @@ loginForm.addEventListener('submit', async function(event){
   const loadingAnimation = document.querySelector('.login .loader');
   loadingAnimation.style.display = 'flex';
   const formData = new FormData(loginForm);
-  console.log(formData.get('username'));
   const response = await fetch(loginForm.action, {method: 'POST', body: formData});
   loadingAnimation.style.display = 'none';
-  console.log(response)
   if (response.status < 400) {
     window.location.href = response.url;
   } else {
@@ -42,7 +40,6 @@ signupForm.addEventListener('submit', async function(event){
   const loadingAnimation = document.querySelector('.signup .loader');
   loadingAnimation.style.display = 'flex';
   const formData = new FormData(signupForm);
-  console.log(formData.get('username'));
   const response = await fetch(signupForm.action, {method: 'POST', body: formData});
   loadingAnimation.style.display = 'none';
   if (response.ok) {
