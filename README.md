@@ -38,7 +38,12 @@
 
 </div>
 
-<p>The Main goal of gitcraft</p>
+<p>The main goal of <em>GitCraft</em> is to offer GitHub users a <b>free</b> alternative to showcase their skills by generating templates populated by a user's GitHub data and stats. The user will have the opportunity to download the template and host it on their own platform. As of now, these templates consist of 3 portfolio websites. More template customization options and types are in the works.</p>
+
+### *sample of generated template*
+<p>
+    <img src="./resources/images/portfolio_responsive.png" />
+</p>
 
 <div align="center">
 
