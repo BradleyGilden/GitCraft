@@ -8,6 +8,7 @@
 <h1 align="center"><img src="./resources/images/header.png" /></h1>
 
 <p align="center"><blockquote align="center"> Crafting Careers One Commit at a Time </blockquote> </p>
+<br>
 <p align="center">
 <a href="https://gitcraft1-alx.koyeb.app/">
     <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
