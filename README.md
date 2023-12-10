@@ -1,7 +1,7 @@
 <table>
     <tr>
-        <td width="100"><img src='./resources/images/logo.png' \></td>
-        <td width="500"><h1 align='center'>GitCraft</h1></td>
+        <td width="200"><img src='./resources/images/logo.png' \></td>
+        <td width="600"><h1 align='center'>GitCraft</h1></td>
     </tr>
 </table>
 
