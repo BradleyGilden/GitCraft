@@ -10,16 +10,29 @@
 <p align="center"><blockquote align="center"> Crafting Careers One Commit at a Time </blockquote> </p>
 <br>
 <p align="center">
-    <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-    <img src="https://img.shields.io/website-up-down-green-red/http/monip.org.svg" />
-    <img src="https://img.shields.io/github/license/BradleyGilden/GitCraft.svg" />
-    <img src="https://img.shields.io/badge/deployed-87FCC4?logo=koyeb&logoColor=black" />
-    <img src="https://img.shields.io/badge/deployed-blue?logo=google&logoColor=white" />
+    <img src="https://img.shields.io/badge/website_%F0%9F%A0%89up-darkgreen?style=for-the-badge&
+" />
+    <a href="https://gitcraft1-alx.koyeb.app/">
+    <img src="https://img.shields.io/badge/deployed-87FCC4?style=for-the-badge&logo=koyeb&logoColor=black" />
+    </a>
+    <a href="https://gitcraft.bradleygilden.tech">
+    <img src="https://img.shields.io/badge/deployed-blue?style=for-the-badge&logo=google&logoColor=white" />
+    </a>
 </p>
 
-⚪<br>
-⚪<br>
-⚪<br>
-⚪<br>
-⚪<br>
-⚪<br>
+* [Description]()
+* [Demo]()
+* [Deploy Your Own Instance]()
+* [Description]()
+* [Description]()
+* [Description]()
+* [Description]()
+
+
+
+<p align="center">
+    <img src="https://img.shields.io/badge/hashnode-2962ff?style=for-the-badge&logo=hashnode
+" />
+    <img src="https://img.shields.io/badge/medium-black?style=for-the-badge&logo=medium
+" />
+</p>
