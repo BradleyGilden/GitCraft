@@ -10,8 +10,9 @@
 <p align="center"><blockquote align="center"> Crafting Careers One Commit at a Time </blockquote> </p>
 <br>
 <p align="center">
-    <img src="https://img.shields.io/badge/website_%F0%9F%A0%89up-darkgreen?style=for-the-badge&
-" />
+    <a href="#">
+    <img src="https://img.shields.io/badge/website_%F0%9F%A0%89up-darkgreen?style=for-the-badge" />
+    </a>
     <a href="https://gitcraft1-alx.koyeb.app/">
     <img src="https://img.shields.io/badge/deployed-87FCC4?style=for-the-badge&logo=koyeb&logoColor=black" />
     </a>
