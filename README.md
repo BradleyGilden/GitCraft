@@ -21,7 +21,7 @@
     </a>
 </p>
 
-* [Description]()
+* [About]()
 * [Demo]()
 * [Deploy Your Own Instance]()
   * [Installation]()
