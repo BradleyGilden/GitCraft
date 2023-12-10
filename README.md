@@ -22,7 +22,8 @@
 </p>
 
 * [About](#about)
-* [Demo]()
+* [Demo](#demo)
+  * [signup/login](#signuplogin)
 * [Deploy Your Own Instance]()
   * [Installation]()
   * [Test]()
@@ -43,6 +44,20 @@
 ### *sample of generated template*
 <p>
     <img src="./resources/images/portfolio_responsive.png" />
+
+<div align="center">
+
+## Demo
+
+
+</div>
+
+This demo will cover some key points in the websites usage
+
+### Signup/Login
+
+
+
 </p>
 
 <div align="center">
