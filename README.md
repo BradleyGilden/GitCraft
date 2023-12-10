@@ -5,9 +5,9 @@
     </tr>
 </table> -->
 
-<h1 align="center"><img src="./resources/images/header.png" /></h1>
-
-<p align="center"><blockquote align="center"> Crafting Careers One Commit at a Time </blockquote> </p>
+<h2 align="center"><img src="./resources/images/header.png" />
+<p>Crafting Careers One Commit at a Time </p>
+</h1>
 <br>
 <p align="center">
     <a href="#">
@@ -21,7 +21,7 @@
     </a>
 </p>
 
-* [About]()
+* [About](#about)
 * [Demo]()
 * [Deploy Your Own Instance]()
   * [Installation]()
@@ -29,11 +29,22 @@
   * [Deploy on serverless host - Koyeb]()
   * [Deploy on cloud server]()
 * [Important Directory/File Descriptions]()
-* [Blog]()
+* [Blog](#blog)
 
 
+<div align="center">
 
-<h2 align="center">Blog</h2>
+## About
+
+</div>
+
+<p>The Main goal of gitcraft</p>
+
+<div align="center">
+
+## Blog
+
+</div>
 <p align="center">
     <img src="https://img.shields.io/badge/hashnode-2962ff?style=for-the-badge&logo=hashnode
 " />
