@@ -24,13 +24,16 @@
 * [Description]()
 * [Demo]()
 * [Deploy Your Own Instance]()
-* [Description]()
-* [Description]()
-* [Description]()
-* [Description]()
+  * [Installation]()
+  * [Test]()
+  * [Deploy on serverless host - Koyeb]()
+  * [Deploy on cloud server]()
+* [Important Directory/File Descriptions]()
+* [Blog]()
 
 
 
+<h2 align="center">Blog</h2>
 <p align="center">
     <img src="https://img.shields.io/badge/hashnode-2962ff?style=for-the-badge&logo=hashnode
 " />
