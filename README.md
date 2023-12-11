@@ -71,6 +71,25 @@ When you get passed the landing page you will be taken to a signup and login pag
             <img src="./resources/images/loginfilled.png" />
         </td>
     </tr>
+    <tr>
+        <td colspan="2" align="center">Input Fields</td>
+    </tr>
+    <tr>
+        <td>Enter a Custom Username</td>
+        <td>Enter a Custom Username</td>
+    </tr>
+    <tr>
+        <td>Enter Github Login Name</td>
+        <td>Enter a Custom Password</td>
+    </tr>
+    <tr>
+        <td>Enter GitHub Token (with admin permissions)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Enter a Custom Password</td>
+        <td></td>
+    </tr>
 </table>
 
 
