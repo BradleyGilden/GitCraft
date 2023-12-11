@@ -218,10 +218,8 @@ See [Google Cloud Platform](https://cloud.google.com) or [Digital Ocean](https:/
 
 </div>
 <p align="center">
-    <img src="https://img.shields.io/badge/hashnode-2962ff?style=for-the-badge&logo=hashnode
-" />
-    <img src="https://img.shields.io/badge/medium-black?style=for-the-badge&logo=medium
-" />
+    <img src="https://img.shields.io/badge/hashnode-2962ff?style=for-the-badge&logo=hashnode" />
+    <img src="https://img.shields.io/badge/medium-black?style=for-the-badge&logo=medium" />
 </p>
 <p align="center">
 <a href="https://www.buymeacoffee.com/comascript" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
