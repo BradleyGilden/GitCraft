@@ -60,8 +60,8 @@ When you get passed the landing page you will be taken to a signup and login pag
 
 <table>
     <tr>
-        <th><p style="padding:0; margin:0;" align="center">Signup</p></th>
-        <th><p style="padding:0; margin:0;" align="center">Login</p></th>
+        <th><div align="center">Signup</div></th>
+        <th><div align="center">Login</div></th>
     </tr>
     <tr>
         <td>
