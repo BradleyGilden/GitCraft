@@ -56,6 +56,23 @@ This demo will cover some key points in the websites usage
 
 ### Signup/Login
 
+When you get passed the landing page you will be taken to a signup and login page
+
+<table>
+    <tr>
+        <th><p style="padding:0; margin:0;" align="center">Signup</p></th>
+        <th><p style="padding:0; margin:0;" align="center">Login</p></th>
+    </tr>
+    <tr>
+        <td>
+            <img src="./resources/images/signupfilled.png" />
+        </td>
+        <td>
+            <img src="./resources/images/loginfilled.png" />
+        </td>
+    </tr>
+</table>
+
 
 
 </p>
