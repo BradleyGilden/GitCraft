@@ -221,30 +221,32 @@ class User:
         """this returns all infor associated with a user needed for a user
         session"""
         general = self.info
-        user_document = {
-            "login": general['login'],
-            "avatar": general['avatar_url'],
-            "name": general['name'],
-            "company": general['company'],
-            "blog": general['blog'],
-            "location": general['location'],
-            "email": general['email'],
-            "hireable": general['hireable'],
-            "bio": general['bio'],
-            "space_available": general["plan"]["space"],
-            "plan": general["plan"]["name"],
-            "following": general['following'],
-            "followers": general['followers'],
-            "repo_count": (general['public_repos'] +
-                           general['owned_private_repos']),
-            "created_at": general['created_at'],
-            "repo_space": self.space_occupied,
-            "socials": self.socials,
-            "streak": self.streak_stats,
-            "pinned": self.pinned_repos(6),
-            "rates": self.rate_limits
-        }
-
+        try:
+            user_document = {
+                "login": general['login'],
+                "avatar": general['avatar_url'],
+                "name": general['name'],
+                "company": general['company'],
+                "blog": general['blog'],
+                "location": general['location'],
+                "email": general['email'],
+                "hireable": general['hireable'],
+                "bio": general['bio'],
+                "space_available": general["plan"]["space"],
+                "plan": general["plan"]["name"],
+                "following": general['following'],
+                "followers": general['followers'],
+                "repo_count": (general['public_repos'] +
+                               general['owned_private_repos']),
+                "created_at": general['created_at'],
+                "repo_space": self.space_occupied,
+                "socials": self.socials,
+                "streak": self.streak_stats,
+                "pinned": self.pinned_repos(6),
+                "rates": self.rate_limits
+            }
+        except Exception:
+            return None
         return user_document
 
 # ************************ EXPERIMENTAL CODE ****************************

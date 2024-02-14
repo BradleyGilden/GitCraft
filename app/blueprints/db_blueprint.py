@@ -61,6 +61,10 @@ def db_login():
             # get user info from login information
             user = User(response[0]["token"], response[0]["login"])
             all_info = user.get_all_info()
+            if (all_info is None):
+                raise Exception("Bad Credentials")
+            # keep session open for 24 hours after login
+            session.permanent = True
             # load the info into the session
             for key, value in all_info.items():
                 session[key] = value
@@ -75,7 +79,7 @@ def db_login():
         else:
             return jsonify({"message": response[0]}), response[1]
     except Exception as e:
-        return jsonify({"message": e}), 400
+        return jsonify({"message": str(e)}), 400
 
 
 @db_bp.route('/logout', strict_slashes=False, methods=["POST"])
@@ -83,6 +87,7 @@ def db_logout():
     """releases data from session"""
     for data in SESSION_KEYS:
         session.pop(data, None)
+    session.permanent = False
     return redirect(url_for('authentication')), 302
 
 

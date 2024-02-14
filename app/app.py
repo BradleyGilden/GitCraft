@@ -13,9 +13,13 @@ from app.blueprints.db_blueprint import db_bp, mongo
 from app.blueprints.temp_blueprint import tmp_bp
 from app.config import DATABASE_URL
 from secrets import token_hex
+from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = token_hex(16)
+
+# allowing all successful logins to have an open session of 24 hours
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 
 # Initializing mongodb connection in flask
 app.config['MONGO_URI'] = DATABASE_URL
