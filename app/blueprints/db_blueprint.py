@@ -43,7 +43,7 @@ def db_signup():
         response = doc_signup(mongo.db.users, json_data)
         return jsonify({"message": response[0]}), response[1]
     except Exception as e:
-        return jsonify({"message": e}), 400
+        return jsonify({"message": str(e)}), 400
 
 
 @db_bp.route('/login', strict_slashes=False, methods=["GET", "POST"])
@@ -106,7 +106,7 @@ def db_update():
         else:
             return jsonify({"message": response[0]}), response[1]
     except Exception as e:
-        return jsonify({"message": e}), 400
+        return jsonify({"message": str(e)}), 400
 
 
 @db_bp.route('/refresh', strict_slashes=False, methods=["GET"])
