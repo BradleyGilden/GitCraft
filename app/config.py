@@ -6,10 +6,6 @@ Configuration for environment variables for flask application
 Author: Bradley Dillion Gilden
 Date: 30-11-2023
 """
-
-DATABASE_URL = ("mongodb+srv://bradleygilden:nanospartan117@cluster0."
-                "kwwgi0j.mongodb.net/gitcraft?retryWrites=true&w=majority")
-
 ICON_PACK = {
     "instagram": "https://img.icons8.com/color/48/instagram-new--v1.png",
     "facebook": "https://img.icons8.com/fluency/48/facebook-new.png",

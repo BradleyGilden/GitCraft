@@ -8,6 +8,7 @@ Date: 09-11-2023
 """
 from app.modules.user import User
 from pymongo.errors import WriteError
+from app.modules.security import encrypt_token
 
 
 def doc_signup(collection, document: dict) -> list:
@@ -18,6 +19,8 @@ def doc_signup(collection, document: dict) -> list:
             return ["invalid credentials (token or github username)", 400]
         doc = collection.find_one({"username": document["username"]})
         if doc is None:
+            # encrypt token for extra layer of security
+            document["token"] = encrypt_token(document["token"])
             doc_id = collection.insert_one(document).inserted_id
             return [str(doc_id), 200]
         else:

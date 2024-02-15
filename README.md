@@ -10,14 +10,8 @@
 </h1>
 <br>
 <p align="center">
-    <a href="#">
-    <img src="https://img.shields.io/badge/website_%F0%9F%A0%89up-darkgreen?style=for-the-badge" />
-    </a>
-    <a href="https://gitcraft1-alx.koyeb.app/">
-    <img src="https://img.shields.io/badge/deployed-87FCC4?style=for-the-badge&logo=koyeb&logoColor=black" />
-    </a>
     <a href="https://gitcraft.bradleygilden.tech">
-    <img src="https://img.shields.io/badge/deployed-blue?style=for-the-badge&logo=google&logoColor=white" />
+    <img src="https://img.shields.io/badge/deployed_on_render-black?style=for-the-badge&logo=render&logoColor=white" />
     </a>
 </p>
 
@@ -28,7 +22,7 @@
 * [Create Your Own Instance](#create-your-own-instance)
   * [Installation](#installation)
   * [Testing](#testing)
-  * [Deploy on serverless host - Koyeb](#deploy-on-serverless-host---koyeb)
+  * [Deploy on serverless host - Koyeb & Render](#deploy-on-serverless-host---koyeb--render)
   * [Deploy on cloud server](#deploy-on-cloud-server)
 * [Important Path Descriptions](#important-path-descriptions)
 * [Blog](#blog)
@@ -147,9 +141,9 @@ This Project is open to any modifications by other developers. If you are to dep
   ```
 * To view it in you browser go to: [https://localhost:5500](https://localhost:5500)
 
-### Deploy on serverless host - Koyeb
+### Deploy on serverless host - Koyeb & Render
 
-[Koyeb](https://koyeb.com) is a servereless hosting platform that enables you to host projects of a variety of frameoworks free of charge with a limit of server regions and memory up to 2gb disk | 256mb RAM. Which is sufficient for small scale projects such as these. If you want to upscale your project you have to pay extra fees.
+[Koyeb](https://koyeb.com) and [Render](https://render.com) are servereless hosting platforms that enable you to host projects of a variety of frameoworks free of charge with certain limitations. This is sufficient for small scale projects such as these. If you want to upscale your project you have to pay extra fees.
 
 Tutorial for [Hosting flask project on Koyeb using Docker container](https://www.koyeb.com/tutorials/python-flask-application-deployment-on-koyeb)
 

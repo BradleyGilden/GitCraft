@@ -10,6 +10,7 @@ Date: 12-11-2023
 from flask import Blueprint, jsonify, request, session, url_for, redirect
 from app.modules.user import User
 from app.modules.mongo_crud import doc_signup, doc_login, doc_update
+from app.modules.security import hash_password, decrypt_token
 from app.config import ICON_PACK, ICON_PACK1, ICON_PACK2, SESSION_KEYS
 from flask_pymongo import PyMongo
 
@@ -33,7 +34,7 @@ def db_signup():
     try:
         json_data = {
             "username": request.form.get("username"),
-            "password": request.form.get("password"),
+            "password": hash_password(request.form.get("password")),
             "token": request.form.get("token"),
             "login": request.form.get("login"),
             "langs": [],
@@ -52,12 +53,13 @@ def db_login():
     try:
         json_data = {
             "username": request.form.get("username"),
-            "password": request.form.get("password")
+            "password": hash_password(request.form.get("password"))
         }
 
         response = doc_login(mongo.db.users, json_data)
         if response[1] == 200:
-
+            # decrypt token from the database
+            response[0]["token"] = decrypt_token(response[0]["token"])
             # get user info from login information
             user = User(response[0]["token"], response[0]["login"])
             all_info = user.get_all_info()
