@@ -4,7 +4,7 @@ COPY . /gitcraft/
 
 WORKDIR /gitcraft
 
-EXPOSE 8000
+ENV PORT 8000
 
 ENV FKEY=*****
 ENV SALT=*****
@@ -14,4 +14,4 @@ RUN apk update && apk add --no-cache build-base libffi-dev
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD ["gunicorn", "app.app:app"]
+CMD exec gunicorn --bind :$PORT --workers 1 app.app:app

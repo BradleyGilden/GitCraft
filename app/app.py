@@ -84,4 +84,4 @@ def page_not_found(error):
 
 if __name__ == '__main__':
     # runs application in debug mode for testing on port 5500
-    app.run(host='0.0.0.0', port=5500, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=8000, debug=True, threaded=True)

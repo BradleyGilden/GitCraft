@@ -14,6 +14,8 @@ from cryptography.fernet import Fernet
 def hash_password(password):
     """ encrypt password with salted hash to store in the database
     """
+    # for local env, if salt returns invalid upon login, then ...
+    # replace getenv("SALT").encode() with b'' string
     return bcrypt.hashpw(password.encode(), getenv("SALT").encode()).decode()
 
 
