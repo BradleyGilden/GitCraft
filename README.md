@@ -10,7 +10,7 @@
 </h1>
 <br>
 <p align="center">
-    <a href="https://gitcraft.bradleygilden.tech">
+    <a href="https://gc.gilden.co.za/">
     <img src="https://img.shields.io/badge/deployed_on_render-black?style=for-the-badge&logo=render&logoColor=white" />
     </a>
 </p>
